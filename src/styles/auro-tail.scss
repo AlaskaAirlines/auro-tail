@@ -1,0 +1,119 @@
+@use '@aurodesignsystem/webcorestylesheets/dist/bundled/type/classes.alaska.min.css';
+@use './tokens.scss';
+
+.tail {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  vertical-align: middle;
+  min-width: var(--avatar-width);
+}
+
+/* hyperlink styling */
+.tail > auro-hyperlink {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+  min-width: var(--avatar-width);
+}
+
+.tail > auro-hyperlink .label {
+  display: block;
+  margin-top: var(--href-label-gap);
+  text-align: center;
+  min-width: var(--avatar-width);
+  white-space: nowrap;
+  overflow: visible;
+  text-overflow: clip;
+}
+
+.border {
+  position: relative;
+  width: var(--avatar-width);
+  height: var(--avatar-width);
+  padding: var(--border-padding);
+  border-radius: var(--border-radius-full);
+  display: grid;
+  place-items: center;
+  /* Center the tail when featured in a hyperlink */
+  margin: 0 auto;
+}
+
+/* For standalone tails (not in groups) with borders, set padding to push content inside so border appears outside */
+.border.has-border {
+  --border-padding: var(--border-width, var(--border-width-default));
+}
+
+/* Border rendered with ::before to avoid changing layout size */
+.border.has-border::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  box-sizing: border-box;
+  /* Apply default values as fallbacks */
+  border: var(--border-width, var(--border-width-default)) solid var(--border-color, var(--border-color-default));
+  /* Above container, below badge */
+  z-index: var(--z-index-border);
+  pointer-events: none;
+  display: block;
+}
+
+.container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: var(--border-radius-full);
+  background: var(--avatar-gradient);
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+}
+
+.container [auro-icon] {
+  --ds-auro-icon-size: var(--tail-width);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  /* 
+    Scale compensates for 88px of extra padding in 
+    SVG viewBox (856x830) of tail icons from auro-icon (856/(856-88*2) = 1.259) 
+  */
+  transform: translate(-50%, calc(-50% + var(--tail-offset-y))) scale(1.26);
+  transform-origin: center;
+  pointer-events: none;
+}
+
+.badge {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  /* For minute adjustments, use transform to avoid affecting layout */
+  transform: translate(var(--badge-translate-x), var(--badge-translate-y));
+  width: var(--badge-width);
+  height: var(--badge-width);
+  object-fit: contain;
+  border-radius: var(--border-radius-full);
+  z-index: var(--z-index-badge);
+}
+
+/* drop-shadow: apply to AAG carriers */
+:host([data-variant="aag"]) [auro-icon] {
+  filter: var(--tail-drop-shadow);
+}
+
+/* outline: apply to OA carriers only when outline prop is present */
+/* Use multiple sharp drop-shadows to create crisp outline & trace SVG curves */
+:host([data-variant="oa"][outline]) [auro-icon] {
+  filter: 
+    drop-shadow(var(--tail-outline-width) 0 0 var(--tail-outline-color))
+    drop-shadow(calc(-1 * var(--tail-outline-width)) 0 0 var(--tail-outline-color))
+    drop-shadow(0 var(--tail-outline-width) 0 var(--tail-outline-color))
+    drop-shadow(0 calc(-1 * var(--tail-outline-width)) 0 var(--tail-outline-color));
+}
+
+/* When href is present, allow component to expand to fit content */
+:host([href]) {
+  width: max-content;
+}
