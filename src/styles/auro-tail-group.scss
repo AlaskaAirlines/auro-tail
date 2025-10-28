@@ -1,0 +1,95 @@
+@use './tokens.scss' as tokens;
+
+/* Get group sizes from tokens */
+$group-sizes: tokens.$tail-group-sizes;
+
+/* 
+ * Horizontal Layout
+ * Tails overlap with negative margin for visual effect
+ */
+@each $size in $group-sizes {
+  :host([layout="horizontal"][size="#{$size}"]) {
+    width: calc(2 * var(--avatar-width-#{$size}) + var(--group-horizontal-overlap-#{$size}));
+    height: var(--avatar-width-#{$size});
+  }
+}
+
+.group { 
+  display: inline-flex; 
+  position: relative;
+}
+
+.group.horizontal { 
+  /* Remove gap to control visual overlap */
+  gap: 0;
+}
+
+/* 
+ * Horizontal group
+ * Overlap the first tail over the succeeding tail using negative margin
+ */
+:host([layout="horizontal"]) .group.horizontal ::slotted(auro-tail) {
+  position: relative;
+  /* Ensure tails render with a border ring using existing border mechanism */
+  --border-color: var(--border-color-white);
+  /* Padding equals border width so the visual ring does not change layout size */
+  --border-padding: var(--border-width, var(--border-width-default));
+}
+
+/* Apply size-specific border widths and overlaps */
+@each $size in $group-sizes {
+  :host([layout="horizontal"][size="#{$size}"]) .group.horizontal ::slotted(auro-tail) { 
+    --border-width: var(--group-horizontal-border-width-#{$size}); 
+  }
+  
+  :host([layout="horizontal"][size="#{$size}"]) .group.horizontal ::slotted(auro-tail:first-child) { 
+    margin-right: var(--group-horizontal-overlap-#{$size});
+    /* First tail above second */
+    z-index: var(--z-index-group-front);
+  }
+}
+
+/* Second tail below first */
+:host([layout="horizontal"]) .group.horizontal ::slotted(auro-tail:last-child) { 
+  z-index: var(--z-index-group-back);
+}
+
+/* 
+ * Diagonal Layout
+ * Tails positioned at opposite corners
+ */
+
+/* Apply size-specific host dimensions for diagonal groups */
+@each $size in $group-sizes {
+  :host([layout="diagonal"][size="#{$size}"]) {
+    width: var(--group-diagonal-width-#{$size});
+    height: var(--group-diagonal-width-#{$size});
+  }
+  
+  :host([layout="diagonal"][size="#{$size}"]) .group.diagonal {
+    width: var(--group-diagonal-width-#{$size});
+    height: var(--group-diagonal-width-#{$size});
+  }
+}
+
+/* Diagonal group - remove borders from tails per spec */
+:host([layout="diagonal"]) .group.diagonal ::slotted(auro-tail) {
+  position: absolute;
+  --border-color: transparent;
+  --border-width: 0;
+  --border-padding: 0;
+}
+
+/* Position first tail */
+.group.diagonal ::slotted(auro-tail:first-child) {
+  top: 0;
+  left: 0;
+  z-index: var(--z-index-group-front);
+}
+
+/* Position second tail */
+.group.diagonal ::slotted(auro-tail:nth-child(2)) {
+  bottom: 0;
+  right: 0;
+  z-index: var(--z-index-group-back);
+}
