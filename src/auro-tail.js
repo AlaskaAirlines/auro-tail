@@ -228,15 +228,11 @@ export class AuroTail extends LitElement {
 
   connectedCallback() {
     super.connectedCallback();
-    this.requestUpdate();
   }
 
   firstUpdated() {
     // Add the tag name as an attribute if it is different than the component name
     this.runtimeUtils.handleComponentTagRename(this, "auro-tail");
-    
-    // Update after first render so that group context is properly detected
-    this.requestUpdate();
   }
 
   /**
