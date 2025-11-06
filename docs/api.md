@@ -6,8 +6,8 @@ The auro-tail element displays Alaska, Hawaiian, and partner airline tail graphi
 
 | Property              | Attribute      | Modifiers | Type                                  | Default     | Description                                      |
 |-----------------------|----------------|-----------|---------------------------------------|-------------|--------------------------------------------------|
-| `badge`               | `badge`        |           | `String`                              | "undefined" | Sets the badge type to display (e.g., 'oneworld'). Only shown when not in a group. |
-| `badgeConfig`         |                | readonly  | `BadgeConfig \| undefined`            |             | Returns badge config when eligible (not grouped and size supports badges). |
+| `badge`               | `badge`        |           | `String`                              | "undefined" | Sets the badge type to display (e.g., 'oneworld'). |
+| `badgeConfig`         |                | readonly  | `BadgeConfig \| undefined`            |             | Returns badge config when eligible.              |
 | `borderColor`         | `border-color` |           | `String`                              | "undefined" | Sets the border color around the tail.           |
 | `borderWidth`         | `border-width` |           | `String`                              | "undefined" | Sets the border width around the tail.           |
 | `hasBorder`           |                | readonly  | `boolean`                             |             | Checks if tail has border properties defined.    |
