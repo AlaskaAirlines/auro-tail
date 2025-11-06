@@ -3,6 +3,9 @@ node_modules/
 docTemplates/
 .cache/
 
+## Logs
+CHANGELOG.md
+
 ## Demo support files
 demo/*.css
 demo/*.css.map
@@ -22,3 +25,5 @@ build/
 
 ## Code coverage reports
 coverage/
+
+custom-elements.json
