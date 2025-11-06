@@ -5,16 +5,21 @@ import groupStyleCss from './styles/auro-tail-group.scss';
 
 /**
  * The auro-tail-group element displays multiple auro-tail elements in a grouped layout. When tails are placed within a group, labels/links and badge logos are not displayed, and only two tails can be paired together.
- *
- * @attr {'horizontal'|'diagonal'} layout - Sets the layout direction for the group.
- * @attr {'xs'|'sm'|'md'|'lg'} size - Sets the size for all child tails in the group.
- * @attr {String} border-color - Sets the border color for all child tails in the group. Does not apply to diagonal layout.
  */
 export class AuroTailGroup extends LitElement {
   static get properties() {
     return {
+      /**
+       * Sets the layout direction for the group.
+       */
       layout: { type: String, attribute: 'layout', reflect: true },
+      /**
+       * Sets the size for all child tails in the group.
+       */
       size: { type: String, attribute: 'size', reflect: true },
+      /**
+       * Sets the border color for all child tails in the group. Does not apply to diagonal layout.
+       */
       borderColor: { type: String, attribute: 'border-color', reflect: true }
     };
   }
@@ -33,11 +38,11 @@ export class AuroTailGroup extends LitElement {
 
   constructor() {
     super();
-    /** @type {'horizontal'|'diagonal'} */
+    /** @type {'horizontal' | 'diagonal'} */
     this.layout = 'horizontal';
-    /** @type {'xs'|'sm'|'md'|'lg'} */
+    /** @type {'xs' | 'sm' | 'md' | 'lg'} */
     this.size = 'lg';
-    /** @type {string|undefined} */
+    /** @type {string | undefined} */
     this.borderColor = undefined;
 
     /**

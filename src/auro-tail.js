@@ -25,25 +25,45 @@ import styleCss from './styles/auro-tail.scss';
 /**
  * The auro-tail element displays Alaska, Hawaiian, and partner airline tail graphics for consistent visual representation across Auro applications.
  *
- * @attr {String} tail - Sets the airline tail based on the tail codes used in auro-icon (e.g., AS, HA, PR).
- * @attr {String} badge - Sets the badge type to display (e.g., 'oneworld').
- * @attr {'xs'|'sm'|'md'|'lg'|'xl'|'2xl'} size - Sets the size of the tail.
- * @attr {Boolean} outline - Renders the tail with an outline style.
- * @attr {String} border-width - Sets the border width around the tail.
- * @attr {String} border-color - Sets the border color around the tail.
- * @attr {String} href - When provided, makes the tail clickable using auro-hyperlink.
- *
  * @fires {CustomEvent<{ href: string }>} href-click - Fired when the auro-hyperlink is clicked.
  */
 export class AuroTail extends LitElement {
   static get properties() {
     return {
+      /**
+       * Sets the airline tail based on the tail codes used in auro-icon (e.g., AS, HA, PR).
+       * @type {string}
+       */
       tail: { type: String },
+      /**
+       * Sets the badge type to display (e.g., 'oneworld').
+       * @type {string}
+       */
       badge: { type: String },
+      /**
+       * Sets the size of the tail.
+       * @type {'xs'|'sm'|'md'|'lg'|'xl'|'2xl'}
+       */
       size: { type: String, reflect: true },
+      /**
+       * Renders the tail with an outline style.
+       * @type {boolean}
+       */
       outline: { type: Boolean, reflect: true },
+      /**
+       * Sets the border width around the tail.
+       * @type {string}
+       */
       borderWidth: { attribute: 'border-width', reflect: true },
+      /**
+       * Sets the border color around the tail.
+       * @type {string}
+       */
       borderColor: { type: String, attribute: 'border-color', reflect: true },
+      /**
+       * Sets the href for the tail.
+       * @type {string}
+       */
       href: { type: String, attribute: 'href' }
     };
   }
@@ -64,17 +84,17 @@ export class AuroTail extends LitElement {
     super();
     /** @type {string} */
     this.tail = 'AS';
-    /** @type {string|undefined} */
+    /** @type {string | undefined} */
     this.badge = undefined;
-    /** @type {'xs'|'sm'|'md'|'lg'|'xl'|'2xl'} */
+    /** @type {'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl'} */
     this.size = 'lg';
     /** @type {boolean} */
     this.outline = false;
-    /** @type {string|undefined} */
+    /** @type {string | undefined} */
     this.borderWidth = undefined;
-    /** @type {string|undefined} */
+    /** @type {string | undefined} */
     this.borderColor = undefined;
-    /** @type {string|undefined} */
+    /** @type {string | undefined} */
     this.href = undefined;
     
     /**
