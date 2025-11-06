@@ -3,8 +3,9 @@ import { AuroDependencyVersioning } from "@aurodesignsystem/auro-library/scripts
 import { LitElement } from 'lit';
 import { html } from 'lit/static-html.js';
 import { ifDefined } from 'lit/directives/if-defined.js';
-import '@aurodesignsystem/auro-hyperlink';
+import { AuroHyperlink } from "@aurodesignsystem/auro-hyperlink/class";
 import { AuroIcon } from "@aurodesignsystem/auro-icon/class";
+import hyperlinkVersion from "./hyperlinkVersion.js";
 import iconVersion from "./iconVersion.js";
 import { BADGE_LOGOS, LINKS_SIZES, BADGES_SIZES, ARIA_LABELS, DEFAULT_AIRLINE_NAME } from './constants';
 import { resolveBorderProps, normalizeBorderWidth, i18nTemplate } from './utils';
@@ -112,6 +113,11 @@ export class AuroTail extends LitElement {
      * @private
      */
     this.iconTag = versioning.generateTag("auro-icon", iconVersion, AuroIcon);
+
+    /**
+     * @private
+     */
+    this.hyperlinkTag = versioning.generateTag("auro-hyperlink", hyperlinkVersion, AuroHyperlink);
 
     /**
      * @private
@@ -312,13 +318,14 @@ export class AuroTail extends LitElement {
     if (this.shouldShowLink) {
       return html`
         <div class="tail">
-          <auro-hyperlink
+          <${this.hyperlinkTag}
+            class="tail-hyperlink"
             href=${ifDefined(this.href)}
             @click=${this._handleLinkClick}
           >
             ${tailContent}
             <slot name="display" class="label ${this.labelTypeClass}">${DEFAULT_AIRLINE_NAME}</slot>
-          </auro-hyperlink>
+          </${this.hyperlinkTag}>
         </div>
       `;
     }

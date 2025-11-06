@@ -48,7 +48,7 @@ describe("auro-tail", () => {
   it("renders hyperlink when href provided and size allowed and not grouped", async () => {
     const el = /** @type {AuroTail} */ (await fixture(html`<auro-tail href="https://alaskaair.com" size="lg"></auro-tail>`));
     expect(el.shouldShowLink).to.be.true;
-    const link = el.shadowRoot.querySelector("auro-hyperlink");
+    const link = el.shadowRoot.querySelector(el.hyperlinkTag._$litStatic$);
     expect(link).to.exist;
   });
 
@@ -62,7 +62,7 @@ describe("auro-tail", () => {
     await tail.updateComplete;
     expect(tail.isInGroup).to.be.true;
     expect(tail.shouldShowLink).to.be.false;
-    expect(tail.shadowRoot.querySelector("auro-hyperlink")).to.be.null;
+    expect(tail.shadowRoot.querySelector(tail.hyperlinkTag._$litStatic$)).to.be.null;
   });
 
   it("applies border custom properties when border props set", async () => {
@@ -126,7 +126,7 @@ describe("auro-tail", () => {
     // Non-canceled
     let eventObj;
     el.addEventListener("href-click", e => { eventObj = e; });
-    el.shadowRoot.querySelector("auro-hyperlink").click();
+    el.shadowRoot.querySelector(el.hyperlinkTag._$litStatic$).click();
     expect(eventObj).to.exist;
     expect(eventObj.defaultPrevented).to.be.false;
 
@@ -136,7 +136,7 @@ describe("auro-tail", () => {
       e.preventDefault();
       canceledEvent = e;
     }, { once: true });
-    el.shadowRoot.querySelector("auro-hyperlink").click();
+    el.shadowRoot.querySelector(el.hyperlinkTag._$litStatic$).click();
     expect(canceledEvent).to.exist;
     expect(canceledEvent.defaultPrevented).to.be.true;
   });
@@ -146,7 +146,7 @@ describe("auro-tail", () => {
     let calls = 0;
     el.onHrefClick = () => { calls++; };
     await el.updateComplete;
-    el.shadowRoot.querySelector("auro-hyperlink").click();
+    el.shadowRoot.querySelector(el.hyperlinkTag._$litStatic$).click();
     expect(calls).to.equal(1);
   });
 
@@ -168,7 +168,7 @@ describe("auro-tail", () => {
   it("shouldShowLink false when size not in LINKS_SIZES", async () => {
     const el = /** @type {AuroTail} */ (await fixture(html`<auro-tail href="https://alaskaair.com" size="xs"></auro-tail>`));
     expect(el.shouldShowLink).to.be.false;
-    expect(el.shadowRoot.querySelector("auro-hyperlink")).to.be.null;
+    expect(el.shadowRoot.querySelector(el.hyperlinkTag._$litStatic$)).to.be.null;
   });
 
   it("accessible check (basic)", async () => {
@@ -239,7 +239,7 @@ describe("auro-tail", () => {
       </auro-tail>
     `));
     await el.updateComplete;
-    const link = el.shadowRoot.querySelector("auro-hyperlink");
+    const link = el.shadowRoot.querySelector(el.hyperlinkTag._$litStatic$);
     expect(link).to.exist;
     const slot = link.querySelector('slot[name="display"]');
     expect(slot).to.exist;
@@ -251,7 +251,7 @@ describe("auro-tail", () => {
     
     let eventDetail;
     el.addEventListener("href-click", e => { eventDetail = e.detail; });
-    el.shadowRoot.querySelector("auro-hyperlink").click();
+    el.shadowRoot.querySelector(el.hyperlinkTag._$litStatic$).click();
     expect(eventDetail).to.deep.equal({ href: "https://alaskaair.com" });
   });
 
