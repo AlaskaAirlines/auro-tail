@@ -18,8 +18,8 @@ The auro-tail element displays Alaska, Hawaiian, and partner airline tail graphi
 | `outline`             | `outline`      |           | `Boolean`                             | false       | Renders the tail with an outline style.          |
 | `shouldShowLink`      |                | readonly  | `boolean`                             |             | Checks if the tail should display as a clickable link. |
 | `size`                | `size`         |           | `'xs'\|'sm'\|'md'\|'lg'\|'xl'\|'2xl'` | "lg"        | Sets the size of the tail.                       |
-| `tail`                | `tail`         |           | `String`                              | "AS"        | Sets the airline tail based on the tail codes used in auro-icon (e.g., AS, AA, PH). |
-| `variant`             |                | readonly  | `"aag" \| "oa"`                       |             | Gets the carrier variant based on the current tail code. Used to map tail codes to carrier types for styling. |
+| `tail`                | `tail`         |           | `String`                              | "AS"        | Sets the airline tail based on the tail codes used in auro-icon (e.g., AS, HA, PR). |
+| `variant`             |                | readonly  | `"aag" \| "oa"`                       |             | Gets the carrier variant based on the current tail code. |
 
 ## Events
 

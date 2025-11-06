@@ -25,7 +25,7 @@ import styleCss from './styles/auro-tail.scss';
 /**
  * The auro-tail element displays Alaska, Hawaiian, and partner airline tail graphics for consistent visual representation across Auro applications.
  *
- * @attr {String} tail - Sets the airline tail based on the tail codes used in auro-icon (e.g., AS, AA, PH).
+ * @attr {String} tail - Sets the airline tail based on the tail codes used in auro-icon (e.g., AS, HA, PR).
  * @attr {String} badge - Sets the badge type to display (e.g., 'oneworld').
  * @attr {'xs'|'sm'|'md'|'lg'|'xl'|'2xl'} size - Sets the size of the tail.
  * @attr {Boolean} outline - Renders the tail with an outline style.
@@ -138,7 +138,7 @@ export class AuroTail extends LitElement {
   }
 
   /**
-   * Gets the carrier variant based on the current tail code. Used to map tail codes to carrier types for styling.
+   * Gets the carrier variant based on the current tail code.
    * @readonly
    * @returns {'aag'|'oa'} The carrier variant
    */
