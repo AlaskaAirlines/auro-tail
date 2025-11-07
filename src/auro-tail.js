@@ -201,6 +201,16 @@ export class AuroTail extends LitElement {
   }
 
   /**
+   * Checks if this tail is in a diagonal group layout.
+   * @readonly
+   * @returns {boolean}
+   */
+  get isInDiagonalGroup() {
+    const group = /** @type {HTMLElement|null} */ (this.closest('auro-tail-group'));
+    return !!group && group.getAttribute('layout') === 'diagonal';
+  }
+
+  /**
    * Returns badge config when eligible.
    * @readonly
    * @returns {BadgeConfig | undefined}
@@ -279,17 +289,27 @@ export class AuroTail extends LitElement {
       borderWidth: normalizedWidth,
     });
 
-    // Set CSS custom properties when they exist.
-    if (borderColor) {
-      this.style.setProperty('--border-color', borderColor);
-    } else {
-      this.style.removeProperty('--border-color');
-    }
+    // Skip setting border properties for diagonal groups (CSS handles them)
+    if (!this.isInDiagonalGroup) {
+      // Set CSS custom properties when they exist.
+      if (borderColor) {
+        this.style.setProperty('--border-color', borderColor);
+      } else {
+        this.style.removeProperty('--border-color');
+      }
 
-    if (borderWidth) {
-      this.style.setProperty('--border-width', borderWidth);
-    } else {
-      this.style.removeProperty('--border-width');
+      // Handle border width:
+      // - If borderWidth is valid (px value): use it
+      // - If borderColor is set but borderWidth was never provided: use default
+      // - If borderWidth was provided but invalid (non-px): ignore completely
+      if (borderWidth) {
+        this.style.setProperty('--border-width', borderWidth);
+      } else if (borderColor && this.borderWidth === undefined) {
+        // Only use default when borderColor is set and borderWidth was never provided
+        this.style.setProperty('--border-width', 'var(--border-width-default)');
+      } else {
+        this.style.removeProperty('--border-width');
+      }
     }
 
     // Set variant as data attribute for CSS targeting.

@@ -65,6 +65,46 @@ describe("auro-tail", () => {
     expect(tail.shadowRoot.querySelector(tail.hyperlinkTag._$litStatic$)).to.be.null;
   });
 
+  it("detects when tail is in horizontal group", async () => {
+    const group = await fixture(html`
+      <auro-tail-group layout="horizontal" size="lg">
+        <auro-tail tail="as"></auro-tail>
+      </auro-tail-group>
+    `);
+    const tail = /** @type {AuroTail} */ (group.querySelector("auro-tail"));
+    await tail.updateComplete;
+    expect(tail.isInGroup).to.be.true;
+    expect(tail.isInHorizontalGroup).to.be.true;
+    expect(tail.isInDiagonalGroup).to.be.false;
+  });
+
+  it("detects when tail is in diagonal group", async () => {
+    const group = await fixture(html`
+      <auro-tail-group layout="diagonal" size="lg">
+        <auro-tail tail="as"></auro-tail>
+      </auro-tail-group>
+    `);
+    const tail = /** @type {AuroTail} */ (group.querySelector("auro-tail"));
+    await tail.updateComplete;
+    expect(tail.isInGroup).to.be.true;
+    expect(tail.isInHorizontalGroup).to.be.false;
+    expect(tail.isInDiagonalGroup).to.be.true;
+  });
+
+  it("does not set border properties for tails in diagonal groups", async () => {
+    const group = await fixture(html`
+      <auro-tail-group layout="diagonal" size="lg">
+        <auro-tail tail="as" border-color="#ffffff" border-width="4px"></auro-tail>
+      </auro-tail-group>
+    `);
+    const tail = /** @type {AuroTail} */ (group.querySelector("auro-tail"));
+    await tail.updateComplete;
+    expect(tail.isInDiagonalGroup).to.be.true;
+    // Border properties should not be set inline for diagonal groups
+    expect(tail.style.getPropertyValue("--border-color")).to.equal("");
+    expect(tail.style.getPropertyValue("--border-width")).to.equal("");
+  });
+
   it("applies border custom properties when border props set", async () => {
     const el = /** @type {AuroTail} */ (await fixture(html`<auro-tail border-width="2px" border-color="#ffffff"></auro-tail>`));
     await el.updateComplete;

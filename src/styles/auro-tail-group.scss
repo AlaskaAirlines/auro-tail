@@ -15,7 +15,8 @@ $group-sizes: tokens.$tail-group-sizes;
       2 * var(--group-horizontal-border-width-#{$size}) +
       var(--group-horizontal-overlap-#{$size})
     );
-    height: var(--avatar-width-#{$size});
+    height: calc(var(--avatar-width-#{$size}) + 2 * var(--group-horizontal-border-width-#{$size}));
+    min-height: calc(var(--avatar-width-#{$size}) + 2 * var(--group-horizontal-border-width-#{$size}));
   }
 }
 

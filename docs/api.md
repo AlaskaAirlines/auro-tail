@@ -32,6 +32,7 @@ The auro-tail element displays Alaska, Hawaiian, and partner airline tail graphi
 | borderWidth         | border-width | string \| undefined                           | undefined | Sets the border width around the tail.                                              |
 | hasBorder           |              |                                               |           | Checks if tail has border properties defined.                                       |
 | href                | href         | string \| undefined                           | undefined | Sets the href for the tail.                                                         |
+| isInDiagonalGroup   |              |                                               |           | Checks if this tail is in a diagonal group layout.                                  |
 | isInGroup           |              |                                               |           | Checks if this tail is inside an auro-tail-group element.                           |
 | isInHorizontalGroup |              |                                               |           | Checks if this tail is in a horizontal group layout.                                |
 | labelTypeClass      |              |                                               |           | Gets the appropriate CSS type class based on tail size.                             |
