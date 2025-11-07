@@ -105,6 +105,21 @@ describe("auro-tail", () => {
     expect(tail.style.getPropertyValue("--border-width")).to.equal("");
   });
 
+  it("respects border-color but ignores border-width in horizontal groups", async () => {
+    const group = await fixture(html`
+      <auro-tail-group layout="horizontal" size="lg">
+        <auro-tail tail="as" border-color="#ff0000" border-width="8px"></auro-tail>
+      </auro-tail-group>
+    `);
+    const tail = /** @type {AuroTail} */ (group.querySelector("auro-tail"));
+    await tail.updateComplete;
+    expect(tail.isInHorizontalGroup).to.be.true;
+    // border-color should be set
+    expect(tail.style.getPropertyValue("--border-color")).to.equal("#ff0000");
+    // border-width should NOT be set (CSS default should be used)
+    expect(tail.style.getPropertyValue("--border-width")).to.equal("");
+  });
+
   it("applies border custom properties when border props set", async () => {
     const el = /** @type {AuroTail} */ (await fixture(html`<auro-tail border-width="2px" border-color="#ffffff"></auro-tail>`));
     await el.updateComplete;
