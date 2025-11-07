@@ -279,6 +279,33 @@ export class AuroTail extends LitElement {
   }
 
   /**
+   * Determines the border width value to set as a CSS custom property.
+   * Returns null if border-width should not be set.
+   * @private
+   * @param {string|undefined} resolvedBorderWidth - Normalized border width from props
+   * @returns {string|null} The border width value to set, or null to remove
+   */
+  _getBorderWidthValue(resolvedBorderWidth) {
+    // Horizontal groups: CSS manages border-width
+    if (this.isInHorizontalGroup) {
+      return null;
+    }
+
+    // Valid width provided: use it
+    if (resolvedBorderWidth) {
+      return resolvedBorderWidth;
+    }
+
+    // No width but color provided: use default width
+    if (this.borderColor && this.borderWidth === undefined) {
+      return 'var(--border-width-default)';
+    }
+
+    // Otherwise: don't set
+    return null;
+  }
+
+  /**
    * Applies border styles and variant from props to CSS custom properties.
    * @private
    */
@@ -291,22 +318,17 @@ export class AuroTail extends LitElement {
 
     // Skip setting border properties for diagonal groups (CSS handles them)
     if (!this.isInDiagonalGroup) {
-      // Set CSS custom properties when they exist.
+      // Set border-color
       if (borderColor) {
         this.style.setProperty('--border-color', borderColor);
       } else {
         this.style.removeProperty('--border-color');
       }
 
-      // Handle border width:
-      // - If borderWidth is valid (px value): use it
-      // - If borderColor is set but borderWidth was never provided: use default
-      // - If borderWidth was provided but invalid (non-px): ignore completely
-      if (borderWidth) {
-        this.style.setProperty('--border-width', borderWidth);
-      } else if (borderColor && this.borderWidth === undefined) {
-        // Only use default when borderColor is set and borderWidth was never provided
-        this.style.setProperty('--border-width', 'var(--border-width-default)');
+      // Set border-width (with group-specific logic)
+      const widthValue = this._getBorderWidthValue(borderWidth);
+      if (widthValue) {
+        this.style.setProperty('--border-width', widthValue);
       } else {
         this.style.removeProperty('--border-width');
       }
