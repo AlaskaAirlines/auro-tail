@@ -1,5 +1,5 @@
 import AuroLibraryRuntimeUtils from "@aurodesignsystem/auro-library/scripts/utils/runtimeUtils.mjs";
-import { LitElement, html } from 'lit';
+import { LitElement, html, nothing } from 'lit';
 import { MAX_TAILS_IN_GROUP, GROUPS_SIZES } from './constants';
 import groupStyleCss from './styles/auro-tail-group.scss';
 
@@ -107,10 +107,12 @@ export class AuroTailGroup extends LitElement {
         } else {
           // Update size for allowed tails
           /** @type {any} */ (tail).size = this.size;
-          
+
           // Update border-color for allowed tails
           if (this.borderColor !== undefined) {
             /** @type {any} */ (tail).borderColor = this.borderColor;
+          } else {
+            /** @type {any} */ (tail).borderColor = undefined;
           }
         }
       });
@@ -128,7 +130,7 @@ export class AuroTailGroup extends LitElement {
   render() {
     // Don't render unsupported sizes.
     if (!GROUPS_SIZES.includes(this.size)) {
-      return html``;
+      return nothing;
     }
 
     return html`
