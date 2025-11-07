@@ -1,13 +1,14 @@
 @use '@aurodesignsystem/webcorestylesheets/dist/bundled/type/classes.alaska.min.css';
 @use './tokens.scss';
+@use './private-tokens.scss';
 
 .tail {
   display: flex;
   flex-direction: column;
   align-items: center;
   vertical-align: middle;
-  min-width: var(--avatar-width);
-  min-height: var(--avatar-width);
+  min-width: var(--container-w);
+  min-height: var(--container-w);
 }
 
 /* hyperlink styling */
@@ -16,15 +17,15 @@
   flex-direction: column;
   align-items: center;
   text-decoration: none;
-  min-width: var(--avatar-width);
-  min-height: var(--avatar-width);
+  min-width: var(--container-w);
+  min-height: var(--container-w);
 }
 
 .tail > .tail-hyperlink .label {
   display: block;
   margin-top: var(--href-label-gap);
   text-align: center;
-  min-width: var(--avatar-width);
+  min-width: var(--container-w);
   white-space: nowrap;
   overflow: visible;
   text-overflow: clip;
@@ -32,27 +33,24 @@
 
 .border {
   position: relative;
-  width: var(--avatar-width);
-  height: var(--avatar-width);
+  width: var(--container-w);
+  height: var(--container-w);
   border-radius: var(--border-radius-full);
   display: grid;
   place-items: center;
   /* Center the tail when featured in a hyperlink */
   margin: 0 auto;
   box-sizing: content-box;
-}
-
-/* For tails with borders */
-.border.has-border {
-  border: var(--border-width, var(--border-width-default)) solid var(--border-color, var(--border-color-default));
+  /* Border is applied via CSS custom properties - only visible when --ds-auro-tail-border-width is set */
+  border: var(--ds-auro-tail-border-width, 0) solid var(--ds-auro-tail-border-color, var(--border-color-default));
 }
 
 /* Expand host dimensions to include border */
 :host {
-  width: calc(var(--avatar-width) + 2 * var(--border-width, 0px));
-  height: calc(var(--avatar-width) + 2 * var(--border-width, 0px));
-  min-width: calc(var(--avatar-width) + 2 * var(--border-width, 0px));
-  min-height: calc(var(--avatar-width) + 2 * var(--border-width, 0px));
+  width: calc(var(--container-w) + 2 * var(--ds-auro-tail-border-width, 0px));
+  height: calc(var(--container-w) + 2 * var(--ds-auro-tail-border-width, 0px));
+  min-width: calc(var(--container-w) + 2 * var(--ds-auro-tail-border-width, 0px));
+  min-height: calc(var(--container-w) + 2 * var(--ds-auro-tail-border-width, 0px));
 }
 
 .container {
@@ -60,20 +58,20 @@
   width: 100%;
   height: 100%;
   border-radius: var(--border-radius-full);
-  background: var(--avatar-gradient);
+  background: var(--container-gradient);
   display: grid;
   place-items: center;
   overflow: hidden;
 }
 
 .container [auro-icon] {
-  --ds-auro-icon-size: var(--tail-width);
+  --ds-auro-icon-size: var(--tail-w);
   position: absolute;
   top: 50%;
   left: 50%;
-  /* 
-    Scale compensates for 88px of extra padding in 
-    SVG viewBox (856x830) of tail icons from auro-icon (856/(856-88*2) = 1.259) 
+  /*
+    Scale compensates for 88px of extra padding in
+    SVG viewBox (856x830) of tail icons from auro-icon (856/(856-88*2) = 1.259)
   */
   transform: translate(-50%, calc(-50% + var(--tail-offset-y))) scale(1.26);
   transform-origin: center;
@@ -85,30 +83,36 @@
   right: 0;
   bottom: 0;
   /* For minute adjustments, use transform to avoid affecting layout */
-  transform: translate(var(--badge-translate-x), var(--badge-translate-y));
-  width: var(--badge-width);
-  height: var(--badge-width);
+  transform: translate(var(--badge-offset-x), var(--badge-offset-y));
+  width: var(--badge-w);
+  height: var(--badge-w);
   object-fit: contain;
   border-radius: var(--border-radius-full);
   z-index: var(--z-index-badge);
 }
 
 /* drop-shadow: apply to AAG carriers */
-:host([data-variant="aag"]) [auro-icon] {
+:host([data-carrier-type="aag"]) [auro-icon] {
   filter: var(--tail-drop-shadow);
 }
 
-/* outline: apply to OA carriers only when outline prop is present */
+/* outline: apply to OA carriers only when variant="outline" prop is present */
 /* Use multiple sharp drop-shadows to create crisp outline & trace SVG curves */
-:host([data-variant="oa"][outline]) [auro-icon] {
-  filter: 
-    drop-shadow(var(--tail-outline-width) 0 0 var(--tail-outline-color))
-    drop-shadow(calc(-1 * var(--tail-outline-width)) 0 0 var(--tail-outline-color))
-    drop-shadow(0 var(--tail-outline-width) 0 var(--tail-outline-color))
-    drop-shadow(0 calc(-1 * var(--tail-outline-width)) 0 var(--tail-outline-color));
+/* Margin offset accounts for stacked drop-shadows (1px per drop-shadow line) to shift layout within container */
+:host([data-carrier-type="oa"][variant="outline"]) [auro-icon] {
+  margin-left: calc(-1 * var(--tail-outline-w) * 2);
+  margin-top: calc(var(--tail-outline-w) * 2);
+  filter:
+    drop-shadow(var(--tail-outline-w) 0 0 var(--tail-outline-color))
+    drop-shadow(calc(-1 * var(--tail-outline-w)) 0 0 var(--tail-outline-color))
+    drop-shadow(0 var(--tail-outline-w) 0 var(--tail-outline-color))
+    drop-shadow(0 calc(-1 * var(--tail-outline-w)) 0 var(--tail-outline-color));
 }
 
 /* When href is present, allow component to expand to fit content */
 :host([href]) {
   width: max-content;
+  height: max-content;
+  min-height: max-content;
+  vertical-align: bottom;
 }

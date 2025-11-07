@@ -1,0 +1,110 @@
+@use 'sass:map';
+
+/* Size config */
+$sizes: (
+  'xs': (container-w: 24px, tail-w: 19px, tail-offset-y: 3px),
+  'sm': (container-w: 32px, tail-w: 26px, tail-offset-y: 4px),
+  'md': (container-w: 48px, tail-w: 39px, tail-offset-y: 6px, href-label-gap: 2px, badge-w: 11px, badge-offset-x: 2px, badge-offset-y: -7px),
+  'lg': (container-w: 60px, tail-w: 48px, tail-offset-y: 7px, href-label-gap: 4px, badge-w: 14px, badge-offset-x: 2px, badge-offset-y: -4px),
+  'xl': (container-w: 96px, tail-w: 77px, tail-offset-y: 13px, href-label-gap: 6px, badge-w: 22px),
+  '2xl': (container-w: 134px, tail-w: 107px, tail-offset-y: 17px, href-label-gap: 8px, badge-w: 31px)
+);
+
+/* Group config */
+$groups: (
+  'xs': (group-diag-w: 42px, group-horiz-border-w: 3px, group-horiz-overlap: -2px),
+  'sm': (group-diag-w: 56px, group-horiz-border-w: 3px, group-horiz-overlap: -2px),
+  'md': (group-diag-w: 84px, group-horiz-border-w: 4px, group-horiz-overlap: -6px),
+  'lg': (group-diag-w: 105px, group-horiz-border-w: 4px, group-horiz-overlap: -10px)
+);
+
+/* Carrier gradients */
+$gradients: (
+  'as': linear-gradient(180deg, #6899C6 0%, #CFE0EF 100%),
+  'ha': linear-gradient(181deg, #CCB7ED -6.38%, #F9C2E7 99.46%),
+  'oa': linear-gradient(181deg, #C5D0D9 -6.38%, #E8F1F8 99.46%)
+);
+
+:host {
+  display: inline-block;
+  width: var(--container-w);
+  height: var(--container-w);
+  min-width: var(--container-w);
+  min-height: var(--container-w);
+
+  /* Defaults (lg size + oa carrier type) */
+  --container-w: var(--container-w-lg);
+  --container-gradient: var(--gradient-oa);
+  --tail-w: var(--tail-w-lg);
+  --tail-offset-y: var(--tail-offset-y-lg);
+  --href-label-gap: var(--href-label-gap-lg);
+  --badge-w: var(--badge-w-lg);
+
+  /* Border */
+  /* Color values are theme-independent */
+  --border-color-default: rgba(88, 94, 103, 1);
+  --border-color-white: #ffffff;
+  --border-w-default: 0;
+  --border-display: none;
+  --border-padding: 0;
+  --border-radius-full: 999px;
+
+  /* Tail outline */
+  --tail-outline-color: var(--border-color-default);
+  --tail-outline-w: 1px;
+
+  /* Shadows & z-index */
+  --tail-drop-shadow: drop-shadow(0 3px 3px rgba(0,0,0,.24)) drop-shadow(0 6px 14px rgba(0,0,0,.24));
+  --z-index-border: 1;
+  --z-index-badge: 2;
+  --z-index-group-back: 1;
+  --z-index-group-front: 2;
+
+  /* Badge offset defaults */
+  --badge-offset-x: 0;
+  --badge-offset-y: 0;
+
+  /* Generate size tokens */
+  @each $size, $props in $sizes {
+    @each $prop, $value in $props {
+      --#{$prop}-#{$size}: #{$value};
+    }
+  }
+
+  /* Generate group tokens */
+  @each $size, $props in $groups {
+    @each $prop, $value in $props {
+      --#{$prop}-#{$size}: #{$value};
+    }
+  }
+
+  /* Generate gradient tokens */
+  @each $tail, $gradient in $gradients {
+    --gradient-#{$tail}: #{$gradient};
+  }
+}
+
+/* Apply size-specific tokens */
+@each $size, $props in $sizes {
+  :host([size="#{$size}"]) {
+    --container-w: var(--container-w-#{$size});
+    --tail-w: var(--tail-w-#{$size});
+    --tail-offset-y: var(--tail-offset-y-#{$size});
+
+    @if map.has-key($props, badge-w) {
+      --badge-w: var(--badge-w-#{$size});
+      --badge-offset-x: var(--badge-offset-x-#{$size}, 0);
+      --badge-offset-y: var(--badge-offset-y-#{$size}, 0);
+    }
+    @if map.has-key($props, href-label-gap) {
+      --href-label-gap: var(--href-label-gap-#{$size});
+    }
+  }
+}
+
+/* Apply tail gradients (case-insensitive) */
+@each $tail, $gradient in $gradients {
+  :host([tail="#{$tail}" i]) {
+    --container-gradient: var(--gradient-#{$tail});
+  }
+}

@@ -1,17 +1,40 @@
 import AuroLibraryRuntimeUtils from "@aurodesignsystem/auro-library/scripts/utils/runtimeUtils.mjs";
 import { LitElement, html, nothing } from 'lit';
-import { MAX_TAILS_IN_GROUP, GROUPS_SIZES } from './constants';
+import { GROUPS_SIZES } from './constants';
 import groupStyleCss from './styles/auro-tail-group.scss';
+
+/**
+ * @typedef {Element & {size: string}} AuroTailElement
+ */
+
+/**
+ * Checks if an element is an AuroTail
+ * @param {Element} element - The element to check
+ * @returns {element is AuroTailElement}
+ */
+function isAuroTailElement(element) {
+  return element.constructor?.isAuroTail === true;
+}
 
 /**
  * The auro-tail-group element displays multiple auro-tail elements in a grouped layout. When tails are placed within a group, labels/links and badge logos are not displayed, and only two tails can be paired together.
  */
 export class AuroTailGroup extends LitElement {
+  /**
+   * Identifies this element as an auro-tail-group.
+   * @private
+   * @type {boolean}
+   */
+  static isAuroTailGroup = true;
+
+  static get styles() {
+    return [groupStyleCss];
+  }
+
   static get properties() {
     return {
       layout: { type: String, attribute: 'layout', reflect: true },
-      size: { type: String, attribute: 'size', reflect: true },
-      borderColor: { type: String, attribute: 'border-color', reflect: true }
+      size: { type: String, attribute: 'size', reflect: true }
     };
   }
 
@@ -30,20 +53,15 @@ export class AuroTailGroup extends LitElement {
   constructor() {
     super();
     /**
-     * Sets the layout direction for the group.
-     * @type {'horizontal' | 'diagonal'}
+     * Sets the layout direction for the group. Valid values: `horizontal`, `diagonal`
+     * @type {string}
      */
     this.layout = 'horizontal';
     /**
-     * Sets the size for all child tails in the group.
-     * @type {'xs' | 'sm' | 'md' | 'lg'}
+     * Sets the size for all child tails in the group. Valid values: `xs`, `sm`, `md`, `lg`
+     * @type {string}
      */
     this.size = 'lg';
-    /**
-     * Sets the border color for all child tails in the group. Does not apply to diagonal layout.
-     * @type {string | undefined}
-     */
-    this.borderColor = undefined;
 
     /**
      * @private
@@ -51,17 +69,6 @@ export class AuroTailGroup extends LitElement {
     this.runtimeUtils = new AuroLibraryRuntimeUtils();
   }
 
-  /**
-   * Prevent shadow DOM creation for unsupported sizes.
-   * @protected
-   */
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  createRenderRoot() {
-    if (!GROUPS_SIZES.includes(this.size)) {
-      return this;
-    }
-    return super.createRenderRoot();
-  }
 
   connectedCallback() {
     super.connectedCallback();
@@ -78,43 +85,27 @@ export class AuroTailGroup extends LitElement {
    */
   updated(changedProperties) {
     super.updated(changedProperties);
-    if (changedProperties.has('size') || changedProperties.has('borderColor')) {
+    if (changedProperties.has('size')) {
       this.updateChildTails();
     }
   }
 
   /**
-   * Manages child tails - removes excess tails and updates sizes.
+   * Updates the size of child tails to match the group size.
    * @private
    */
   updateChildTails() {
     // Small delay to ensure slotted content is available
     setTimeout(() => {
-      const tails = this.querySelectorAll('auro-tail');
-      
-      // If size is not supported, remove all child tails from light DOM.
       if (!GROUPS_SIZES.includes(this.size)) {
-        tails.forEach((tail) => {
-          tail.remove();
-        });
         return;
       }
 
-      // Remove excess tails from DOM completely.
-      tails.forEach((tail, index) => {
-        if (index >= MAX_TAILS_IN_GROUP) {
-          tail.remove();
-        } else {
-          // Update size for allowed tails
-          /** @type {any} */ (tail).size = this.size;
+      const allChildren = Array.from(this.children);
+      const tails = allChildren.filter(isAuroTailElement);
 
-          // Update border-color for allowed tails
-          if (this.borderColor !== undefined) {
-            /** @type {any} */ (tail).borderColor = this.borderColor;
-          } else {
-            /** @type {any} */ (tail).borderColor = undefined;
-          }
-        }
+      tails.forEach((tail) => {
+        tail.size = this.size;
       });
     }, 0);
   }
@@ -138,9 +129,5 @@ export class AuroTailGroup extends LitElement {
         <slot @slotchange=${this.handleSlotChange}></slot>
       </div>
     `;
-  }
-
-  static get styles() {
-    return [groupStyleCss];
   }
 }
