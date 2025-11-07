@@ -2,11 +2,12 @@
 @use './tokens.scss';
 
 .tail {
-  display: inline-flex;
+  display: flex;
   flex-direction: column;
   align-items: center;
   vertical-align: middle;
   min-width: var(--avatar-width);
+  min-height: var(--avatar-width);
 }
 
 /* hyperlink styling */
@@ -16,6 +17,7 @@
   align-items: center;
   text-decoration: none;
   min-width: var(--avatar-width);
+  min-height: var(--avatar-width);
 }
 
 .tail > .tail-hyperlink .label {
@@ -43,6 +45,14 @@
 /* For tails with borders */
 .border.has-border {
   border: var(--border-width, var(--border-width-default)) solid var(--border-color, var(--border-color-default));
+}
+
+/* Expand host dimensions to include border */
+:host {
+  width: calc(var(--avatar-width) + 2 * var(--border-width, 0px));
+  height: calc(var(--avatar-width) + 2 * var(--border-width, 0px));
+  min-width: calc(var(--avatar-width) + 2 * var(--border-width, 0px));
+  min-height: calc(var(--avatar-width) + 2 * var(--border-width, 0px));
 }
 
 .container {

@@ -69,10 +69,12 @@ $group-horizontal: (
 
 /* Token Definitions */
 :host {
+  display: inline-block;
   /* Host dimensions to match container */
   width: var(--avatar-width);
   height: var(--avatar-width);
   min-width: var(--avatar-width);
+  min-height: var(--avatar-width);
   
   /* Default Values */
   --avatar-width: var(--avatar-width-lg);
