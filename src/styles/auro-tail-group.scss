@@ -9,7 +9,12 @@ $group-sizes: tokens.$tail-group-sizes;
  */
 @each $size in $group-sizes {
   :host([layout="horizontal"][size="#{$size}"]) {
-    width: calc(2 * var(--avatar-width-#{$size}) + var(--group-horizontal-overlap-#{$size}));
+    /* Account for avatar widths, border on each tail, and overlap */
+    width: calc(
+      2 * var(--avatar-width-#{$size}) +
+      2 * var(--group-horizontal-border-width-#{$size}) +
+      var(--group-horizontal-overlap-#{$size})
+    );
     height: var(--avatar-width-#{$size});
   }
 }
@@ -32,18 +37,20 @@ $group-sizes: tokens.$tail-group-sizes;
   position: relative;
   /* Ensure tails render with a border ring using existing border mechanism */
   --border-color: var(--border-color-white);
-  /* Padding equals border width so the visual ring does not change layout size */
-  --border-padding: var(--border-width, var(--border-width-default));
 }
 
 /* Apply size-specific border widths and overlaps */
 @each $size in $group-sizes {
-  :host([layout="horizontal"][size="#{$size}"]) .group.horizontal ::slotted(auro-tail) { 
-    --border-width: var(--group-horizontal-border-width-#{$size}); 
+  :host([layout="horizontal"][size="#{$size}"]) .group.horizontal ::slotted(auro-tail) {
+    --border-width: var(--group-horizontal-border-width-#{$size});
+    /* Expand host width to include borders on both sides */
+    width: calc(var(--avatar-width-#{$size}) + 2 * var(--group-horizontal-border-width-#{$size}));
+    min-width: calc(var(--avatar-width-#{$size}) + 2 * var(--group-horizontal-border-width-#{$size}));
   }
-  
-  :host([layout="horizontal"][size="#{$size}"]) .group.horizontal ::slotted(auro-tail:first-child) { 
-    margin-right: var(--group-horizontal-overlap-#{$size});
+
+  :host([layout="horizontal"][size="#{$size}"]) .group.horizontal ::slotted(auro-tail:first-child) {
+    /* Compensate overlap for expanded tail widths (borders on both sides of both tails) */
+    margin-right: calc(var(--group-horizontal-overlap-#{$size}) - 2 * var(--group-horizontal-border-width-#{$size}));
     /* First tail above second */
     z-index: var(--z-index-group-front);
   }

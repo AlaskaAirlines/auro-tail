@@ -32,32 +32,17 @@
   position: relative;
   width: var(--avatar-width);
   height: var(--avatar-width);
-  padding: var(--border-padding);
   border-radius: var(--border-radius-full);
   display: grid;
   place-items: center;
   /* Center the tail when featured in a hyperlink */
   margin: 0 auto;
+  box-sizing: content-box;
 }
 
-/* For standalone tails (not in groups) with borders, set padding to push content inside so border appears outside */
+/* For tails with borders */
 .border.has-border {
-  --border-padding: var(--border-width, var(--border-width-default));
-}
-
-/* Border rendered with ::before to avoid changing layout size */
-.border.has-border::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  box-sizing: border-box;
-  /* Apply default values as fallbacks */
   border: var(--border-width, var(--border-width-default)) solid var(--border-color, var(--border-color-default));
-  /* Above container, below badge */
-  z-index: var(--z-index-border);
-  pointer-events: none;
-  display: block;
 }
 
 .container {
