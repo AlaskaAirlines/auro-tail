@@ -8,7 +8,7 @@ import { AuroIcon } from "@aurodesignsystem/auro-icon/class";
 import hyperlinkVersion from "./hyperlinkVersion.js";
 import iconVersion from "./iconVersion.js";
 import { BADGE_LOGOS, LINKS_SIZES, BADGES_SIZES, ARIA_LABELS, DEFAULT_AIRLINE_NAME } from './constants';
-import { resolveBorderProps, normalizeBorderWidth, i18nTemplate } from './utils';
+import { resolveBorderProps, i18nTemplate } from './utils';
 import styleCss from './styles/auro-tail.scss';
 
 /**
@@ -310,10 +310,9 @@ export class AuroTail extends LitElement {
    * @private
    */
   applyCSSProperties() {
-    const normalizedWidth = normalizeBorderWidth(this.borderWidth);
     const { borderColor, borderWidth } = resolveBorderProps({
       borderColor: this.borderColor,
-      borderWidth: normalizedWidth,
+      borderWidth: this.borderWidth,
     });
 
     // Skip setting border properties for diagonal groups (CSS handles them)
