@@ -8,7 +8,7 @@ import { AuroIcon } from "@aurodesignsystem/auro-icon/class";
 import hyperlinkVersion from "./hyperlinkVersion.js";
 import iconVersion from "./iconVersion.js";
 import { BADGE_LOGOS, LINKS_SIZES, BADGES_SIZES, ARIA_LABELS, DEFAULT_AIRLINE_NAME } from './constants';
-import { resolveBorderProps, i18nTemplate } from './utils';
+import { i18nTemplate } from './utils';
 import styleCss from './styles/auro-tail.scss';
 
 /**
@@ -18,25 +18,43 @@ import styleCss from './styles/auro-tail.scss';
  */
 
 /**
+ * Checks if an element is an AuroTailGroup
+ * @param {HTMLElement} element - The element to check
+ * @returns {boolean}
+ */
+function isAuroTailGroupElement(element) {
+  return element.constructor?.isAuroTailGroup === true;
+}
+
+/**
  * @callback HrefClickCallback
  * @param {Event} event - The click event
  * @returns {void}
  */
 
 /**
- * The auro-tail element displays Alaska, Hawaiian, and partner airline tail graphics for consistent visual representation across Auro applications.
+ * The auro-tail element displays Alaska, Hawaiian, and partner airline tail graphics for consistent visual representation across Alaska applications.
  *
  * @fires {CustomEvent<{ href: string }>} href-click - Fired when the auro-hyperlink is clicked.
  */
 export class AuroTail extends LitElement {
+  /**
+   * Identifies this element as an auro-tail.
+   * @private
+   * @type {boolean}
+   */
+  static isAuroTail = true;
+
+  static get styles() {
+    return [styleCss];
+  }
+
   static get properties() {
     return {
       tail: { type: String },
       badge: { type: String },
       size: { type: String, reflect: true },
-      outline: { type: Boolean, reflect: true },
-      borderWidth: { attribute: 'border-width', reflect: true },
-      borderColor: { type: String, attribute: 'border-color', reflect: true },
+      variant: { type: String, reflect: true },
       href: { type: String, attribute: 'href' }
     };
   }
@@ -56,35 +74,25 @@ export class AuroTail extends LitElement {
   constructor() {
     super();
     /**
-     * Sets the airline tail based on the tail codes used in auro-icon (e.g., AS, HA, PR).
+     * Sets the airline tail based on the tail codes used in auro-icon (e.g., `AS`, `HA`, `PR`).
      * @type {string}
      */
     this.tail = 'AS';
     /**
-     * Sets the badge type to display (e.g., 'oneworld').
+     * Sets the badge type to display (e.g., `oneworld`).
      * @type {string | undefined}
      */
     this.badge = undefined;
     /**
-     * Sets the size of the tail.
-     * @type {'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl'}
+     * Sets the size of the tail. Valid values: `xs`, `sm`, `md`, `lg`, `xl`, `2xl`
+     * @type {string}
      */
     this.size = 'lg';
     /**
-     * Renders the tail with an outline style.
-     * @type {boolean}
-     */
-    this.outline = false;
-    /**
-     * Sets the border width around the tail.
+     * Sets the visual variant of the tail. Valid values: `outline`
      * @type {string | undefined}
      */
-    this.borderWidth = undefined;
-    /**
-     * Sets the border color around the tail.
-     * @type {string | undefined}
-     */
-    this.borderColor = undefined;
+    this.variant = undefined;
     /**
      * Sets the href for the tail.
      * @type {string | undefined}
@@ -92,12 +100,12 @@ export class AuroTail extends LitElement {
     this.href = undefined;
     
     /**
-     * Determines the carrier variant based on tail code.
+     * Determines the carrier type based on tail code. Valid values: `aag`, `oa`
      * Used internally for styling.
      * @private
-     * @type {'aag'|'oa'}
+     * @type {string}
      */
-    this._variant = 'oa';
+    this._carrierType = 'oa';
     
     /**
      * Optional internal callback invoked on hyperlink click before the custom
@@ -157,23 +165,24 @@ export class AuroTail extends LitElement {
   }
 
   /**
-   * Gets the carrier variant based on the current tail code.
-   * @readonly
-   * @returns {'aag'|'oa'} The carrier variant
+   * Gets the carrier type based on the current tail code. Returns `aag` or `oa`
+   * @private
+   * @returns {string} The carrier type
    */
-  get variant() {
+  get carrierType() {
     // Carrier mappings
     const carriers = {
       'aag': ['as', 'ha'],
       'oa': ['oa']
     };
-    
+
+    // Auro Icon uses capitalized tail codes, convert to lowercase for matching
     const tailCode = this.tail.toLowerCase();
-    
+
     // Find which carrier group contains this tail code
     for (const [variant, codes] of Object.entries(carriers)) {
       if (codes.includes(tailCode)) {
-        return /** @type {'aag'|'oa'} */ (variant);
+        return variant;
       }
     }
     
@@ -182,57 +191,65 @@ export class AuroTail extends LitElement {
   }
 
   /**
+   * Finds the parent tail group element.
+   * @private
+   * @returns {HTMLElement|null}
+   */
+  _findParentGroup() {
+    let parent = this.parentElement;
+    while (parent) {
+      // Check if parent is a tail group
+      if (isAuroTailGroupElement(parent)) {
+        return parent;
+      }
+      parent = parent.parentElement;
+    }
+    return null;
+  }
+
+  /**
    * Checks if this tail is inside an auro-tail-group element.
-   * @readonly
+   * @private
    * @returns {boolean}
    */
   get isInGroup() {
-    return !!this.closest('auro-tail-group');
+    return !!this._findParentGroup();
   }
 
   /**
    * Checks if this tail is in a horizontal group layout.
-   * @readonly
+   * @private
    * @returns {boolean}
    */
   get isInHorizontalGroup() {
-    const group = /** @type {HTMLElement|null} */ (this.closest('auro-tail-group'));
+    const group = this._findParentGroup();
     return !!group && group.getAttribute('layout') === 'horizontal';
   }
 
   /**
    * Checks if this tail is in a diagonal group layout.
-   * @readonly
+   * @private
    * @returns {boolean}
    */
   get isInDiagonalGroup() {
-    const group = /** @type {HTMLElement|null} */ (this.closest('auro-tail-group'));
+    const group = this._findParentGroup();
     return !!group && group.getAttribute('layout') === 'diagonal';
   }
 
   /**
    * Returns badge config when eligible.
-   * @readonly
+   * @private
    * @returns {BadgeConfig | undefined}
    */
   get badgeConfig() {
-    return this.badge && !this.isInGroup && BADGES_SIZES.includes(this.size) 
-      ? BADGE_LOGOS[/** @type {keyof typeof BADGE_LOGOS} */ (this.badge)] 
+    return this.badge && !this.isInGroup && BADGES_SIZES.includes(this.size)
+      ? BADGE_LOGOS[this.badge]
       : undefined;
   }
 
   /**
-   * Checks if tail has border properties defined.
-   * @readonly
-   * @returns {boolean}
-   */
-  get hasBorder() {
-    return this.borderColor !== undefined || this.borderWidth !== undefined;
-  }
-
-  /**
    * Checks if the tail should display as a clickable link.
-   * @readonly
+   * @private
    * @returns {boolean}
    */
   get shouldShowLink() {
@@ -241,7 +258,7 @@ export class AuroTail extends LitElement {
 
   /**
    * Gets the appropriate CSS type class based on tail size.
-   * @readonly
+   * @private
    * @returns {string}
    */
   get labelTypeClass() {
@@ -252,7 +269,7 @@ export class AuroTail extends LitElement {
       '2xl': 'body-lg'
     };
     
-    return sizeToTypeClassMap[/** @type {keyof typeof sizeToTypeClassMap} */ (this.size)] || 'body-sm';
+    return sizeToTypeClassMap[this.size] || 'body-sm';
   }
 
   connectedCallback() {
@@ -268,73 +285,13 @@ export class AuroTail extends LitElement {
    * @param {Map<string, any>} changedProperties - Changed properties
    */
   updated(changedProperties) {
-    // Update internal variant when tail changes
+    // Update internal carrier type when tail changes
     if (changedProperties.has('tail')) {
-      this._variant = this.variant;
+      this._carrierType = this.carrierType;
+      // Set carrier type as data attribute for CSS targeting.
+      this.dataset.carrierType = this.carrierType;
     }
-    
-    // Reflect props to CSS custom properties on host.
-    this.applyCSSProperties();
     super.updated(changedProperties);
-  }
-
-  /**
-   * Determines the border width value to set as a CSS custom property.
-   * Returns null if border-width should not be set.
-   * @private
-   * @param {string|undefined} resolvedBorderWidth - Normalized border width from props
-   * @returns {string|null} The border width value to set, or null to remove
-   */
-  _getBorderWidthValue(resolvedBorderWidth) {
-    // Horizontal groups: CSS manages border-width
-    if (this.isInHorizontalGroup) {
-      return null;
-    }
-
-    // Valid width provided: use it
-    if (resolvedBorderWidth) {
-      return resolvedBorderWidth;
-    }
-
-    // No width but color provided: use default width
-    if (this.borderColor && this.borderWidth === undefined) {
-      return 'var(--border-width-default)';
-    }
-
-    // Otherwise: don't set
-    return null;
-  }
-
-  /**
-   * Applies border styles and variant from props to CSS custom properties.
-   * @private
-   */
-  applyCSSProperties() {
-    const { borderColor, borderWidth } = resolveBorderProps({
-      borderColor: this.borderColor,
-      borderWidth: this.borderWidth,
-    });
-
-    // Skip setting border properties for diagonal groups (CSS handles them)
-    if (!this.isInDiagonalGroup) {
-      // Set border-color
-      if (borderColor) {
-        this.style.setProperty('--border-color', borderColor);
-      } else {
-        this.style.removeProperty('--border-color');
-      }
-
-      // Set border-width (with group-specific logic)
-      const widthValue = this._getBorderWidthValue(borderWidth);
-      if (widthValue) {
-        this.style.setProperty('--border-width', widthValue);
-      } else {
-        this.style.removeProperty('--border-width');
-      }
-    }
-
-    // Set variant as data attribute for CSS targeting.
-    this.dataset.variant = this.variant;
   }
 
   render() {
@@ -347,11 +304,11 @@ export class AuroTail extends LitElement {
 
     // Tail content
     const tailContent = html`
-      <div class="border ${(this.hasBorder || this.isInHorizontalGroup) ? 'has-border' : ''}">
+      <div class="border">
         <div class="container" part="container" role="img" aria-label=${ariaLabel}>
           <${this.iconTag} category="logos" name="tail-${this.tail.toUpperCase()}"></${this.iconTag}>
         </div>
-        ${badge && typeof badge.icon === 'function' ? html`<div class="badge">${badge.icon()}</div>` : null}
+        ${badge?.icon ? html`<div class="badge">${badge.icon()}</div>` : null}
       </div>
     `;
 
@@ -377,9 +334,5 @@ export class AuroTail extends LitElement {
         ${tailContent}
       </div>
     `;
-  }
-
-  static get styles() {
-    return [styleCss];
   }
 }

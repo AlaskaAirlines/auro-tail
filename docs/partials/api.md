@@ -3,32 +3,51 @@
 
 ## API Examples
 
-### Attribute Examples
+## Badge
 
-## Tail
-       
-Set the `tail` prop to insert a tail graphic from the `<auro-icon>` repository with the corresponding icon code.
+Display predefined badges such as OneWorld Alliance using the `badge` attribute.
 
-Tail codes from `<auro-icon>` are expected to be UPPERCASE (e.g., `AS`, not `as`).
+### Supported sizes:
+- `md`, `lg`, `xl`, `2xl`
 
-> For a full list of available tail graphics & corresponding codes, click here.
- 
-Certain properties are not available for all `tail` codes. See the table below for details.
-
-| `tail` | Airline Name        | `outline` | CSS Drop-shadow |
-|---------|---------------------|---------|-------------|
-| AS      | Alaska Airlines     | ✗       | ✓           |
-| HA      | Hawaiian Airlines   | ✗       | ✓           |
-| PR, FI, etc | Other airline (OA)  | ✓       | ✗           |
+> `badge` prop is not displayed when in an `<auro-tail-group>`.
 
 <div class="exampleWrapper">
-  <!-- AURO-GENERATED-CONTENT:START (FILE:src=../apiExamples/tail.html) -->
+  <!-- AURO-GENERATED-CONTENT:START (FILE:src=../apiExamples/badges.html) -->
   <!-- AURO-GENERATED-CONTENT:END -->
 </div>
 
 <auro-accordion alignRight>
   <span slot="trigger">See code</span>
-<!-- AURO-GENERATED-CONTENT:START (CODE:src=../apiExamples/tail.html) -->
+<!-- AURO-GENERATED-CONTENT:START (CODE:src=../apiExamples/badges.html) -->
+<!-- AURO-GENERATED-CONTENT:END -->
+</auro-accordion>
+
+## Href
+
+Make tails clickable by adding an `href` attribute. This displays a clickable link below the tail using the `<auro-hyperlink>` component.
+
+### Supported sizes:
+- `md`, `lg`, `xl`, `2xl`
+
+### Customizing the label:
+- Use the `display` slot to provide custom link text
+- If no `slot` is provided, a default label is inserted automatically
+
+```html
+<auro-tail tail="HA" size="md" href="https://hawaiianairlines.com/">
+  <span slot="display">Hawaiian Airlines</span>
+</auro-tail>
+```
+
+<div class="exampleWrapper">
+  <!-- AURO-GENERATED-CONTENT:START (FILE:src=../apiExamples/href.html) -->
+  <!-- AURO-GENERATED-CONTENT:END -->
+</div>
+
+<auro-accordion alignRight>
+  <span slot="trigger">See code</span>
+<!-- AURO-GENERATED-CONTENT:START (CODE:src=../apiExamples/href.html) -->
 <!-- AURO-GENERATED-CONTENT:END -->
 </auro-accordion>
 
@@ -58,111 +77,59 @@ Certain properties are not available for all `<auto-tail>` sizes. See the table 
 <!-- AURO-GENERATED-CONTENT:END -->
 </auro-accordion>
 
-## Badge
+## Tail
+       
+Set the `tail` attribute to insert a tail graphic from the `<auro-icon>` repository with the corresponding icon code.
 
-Display predefined badges such as OneWorld Alliance using the `badge` attribute.
 
-### Supported sizes:
-- `md`, `lg`, `xl`, `2xl`
+Tail codes from `<auro-icon>` are expected to be UPPERCASE (e.g., `AS`, not `as`).
 
-> `badge` prop is not displayed when in an `<auro-tail-group>`.
+> For a full list of available tail graphics & corresponding codes, click here.
+ 
+Certain properties are not available for all `tail` codes. See the table below for details.
+
+The `tail` attribute is required.
 
 <div class="exampleWrapper">
-  <!-- AURO-GENERATED-CONTENT:START (FILE:src=../apiExamples/badges.html) -->
+  <!-- AURO-GENERATED-CONTENT:START (FILE:src=../apiExamples/tail.html) -->
   <!-- AURO-GENERATED-CONTENT:END -->
 </div>
 
 <auro-accordion alignRight>
   <span slot="trigger">See code</span>
-<!-- AURO-GENERATED-CONTENT:START (CODE:src=../apiExamples/badges.html) -->
+<!-- AURO-GENERATED-CONTENT:START (CODE:src=../apiExamples/tail.html) -->
 <!-- AURO-GENERATED-CONTENT:END -->
 </auro-accordion>
 
-## Borders
+## Variant
 
-Optional border ring around `<auro-tail>`.
+Set the `variant` attribute to change the visual style of the tail.
 
-- Displays if either are set:
-  - `border-width`
-    - Aaccepts pixel values, with or without the `px` unit (e.g., `"4"` or `"4px"`)
-      - Other units (rem, em, %, CSS variables) are ignored
-    - Default width: `4px` when `border-color` is specified
-  - `border-color`
-    - Accepts any valid CSS color value:
-      - Hex: `#FF1493`
-      - Named colors: `"hotpink"`
-      - RGB/RGBA: `rgb(255, 20, 147)`, `rgba(255, 20, 147, 0.5)`
-      - HSL: `hsl(328, 100%, 54%)`
-      - CSS variables: `var(--custom-color)`
-    - Default color: `rgba(88, 94, 103, 1)` when `border-width` is specified
-- `border-width` & `border-color` can be used in combination
+### Available variants:
+- `outline` - Adds an outline around the tail graphic
+  - Outlines apply only to partner (OA) tails
+    - AAG tails (AS & HA) never feature outlines
+  - Width & color are predefined and not customizable
 
 <div class="exampleWrapper">
-  <!-- AURO-GENERATED-CONTENT:START (FILE:src=../apiExamples/borders.html) -->
+  <!-- AURO-GENERATED-CONTENT:START (FILE:src=../apiExamples/variant.html) -->
   <!-- AURO-GENERATED-CONTENT:END -->
 </div>
 
 <auro-accordion alignRight>
   <span slot="trigger">See code</span>
-<!-- AURO-GENERATED-CONTENT:START (CODE:src=../apiExamples/borders.html) -->
+<!-- AURO-GENERATED-CONTENT:START (CODE:src=../apiExamples/variant.html) -->
 <!-- AURO-GENERATED-CONTENT:END -->
 </auro-accordion>
 
-## Outline
-
-Set the `outline` boolean prop to add an outline around the tail graphic.
-
-- Outlines apply only to partner (OA) tails
-  - AAG tails (AS & HA) never feature outlines
-- Width & color are predefined and not customizable
-
-<div class="exampleWrapper">
-  <!-- AURO-GENERATED-CONTENT:START (FILE:src=../apiExamples/outline.html) -->
-  <!-- AURO-GENERATED-CONTENT:END -->
-</div>
-
-<auro-accordion alignRight>
-  <span slot="trigger">See code</span>
-<!-- AURO-GENERATED-CONTENT:START (CODE:src=../apiExamples/outline.html) -->
-<!-- AURO-GENERATED-CONTENT:END -->
-</auro-accordion>
-
-## Hyperlink
-
-Make tails clickable by adding an `href` attribute. This displays a clickable link below the tail using the `<auro-hyperlink>` component.
-
-### Supported sizes:
-- `md`, `lg`, `xl`, `2xl`
-
-### Customizing the label:
-- Use the `display` slot to provide custom link text
-- If no `slot` is provided, a default label is inserted automatically
-
-```html
-<auro-tail tail="HA" size="md" href="https://hawaiianairlines.com/">
-  <span slot="display">Hawaiian Airlines</span>
-</auro-tail>
-```
-
-<div class="exampleWrapper">
-  <!-- AURO-GENERATED-CONTENT:START (FILE:src=../apiExamples/links.html) -->
-  <!-- AURO-GENERATED-CONTENT:END -->
-</div>
-
-<auro-accordion alignRight>
-  <span slot="trigger">See code</span>
-<!-- AURO-GENERATED-CONTENT:START (CODE:src=../apiExamples/links.html) -->
-<!-- AURO-GENERATED-CONTENT:END -->
-</auro-accordion>
-
-## Group
+## auro-tail-group
 Use `<auro-tail-group>` to display paired `<auro-tail>` components in a group layout with specific behavioral constraints and visual treatments.
 
 ### Supported sizes:
 - `xs`, `sm`, `md`, `lg`
 
 ### Limitations
-* **Maximum Display Count:** Only 2 avatars will be displayed in any group
+* **Maximum Display Count:** Only 2 tails are supported in any group.
 * **Size Override:** The group's `size` property will override individual `<auro-tail>` `size` properties
 * **Suppressed Features:**
    * `badge` will not be shown
@@ -170,7 +137,7 @@ Use `<auro-tail-group>` to display paired `<auro-tail>` components in a group la
 
 ### Diagonal
 
-> `border-width`, and `border-color` props are not applicable and will be ignored.
+- Border styles are not applicable to diagonal groups and will be ignored.
 
 <div class="exampleWrapper">
   <!-- AURO-GENERATED-CONTENT:START (FILE:src=../apiExamples/group-diagonal.html) -->
@@ -185,7 +152,7 @@ Use `<auro-tail-group>` to display paired `<auro-tail>` components in a group la
 
 ### Horizontal
 
-> `border-width` prop is not applicable and will be ignored.
+- Border width is not customizable.
 
 <div class="exampleWrapper">
   <!-- AURO-GENERATED-CONTENT:START (FILE:src=../apiExamples/group-horizontal.html) -->
@@ -198,7 +165,9 @@ Use `<auro-tail-group>` to display paired `<auro-tail>` components in a group la
 <!-- AURO-GENERATED-CONTENT:END -->
 </auro-accordion>
 
-#### Horizontal with `border-color`:
+#### Horizontal with custom border color:
+
+- Set `--ds-auro-tail-border-color` on the group element to customize border color for all child tails.
 
 <div class="exampleWrapper">
   <!-- AURO-GENERATED-CONTENT:START (FILE:src=../apiExamples/group-horizontal-border.html) -->
@@ -211,7 +180,34 @@ Use `<auro-tail-group>` to display paired `<auro-tail>` components in a group la
 <!-- AURO-GENERATED-CONTENT:END -->
 </auro-accordion>
 
+## CSS Customization
 
+## Borders
+
+Optional border ring around `<auro-tail>`.
+
+Use CSS custom properties to style borders:
+
+- `--ds-auro-tail-border-width`
+  - Set the border width (e.g., `3px`, `4px`)
+- `--ds-auro-tail-border-color`
+  - Set the border color (any valid CSS color value)
+
+Example:
+```html
+<auro-tail tail="AS" style="--ds-auro-tail-border-width: 3px; --ds-auro-tail-border-color: var(--ds-basic-color-brand-primary)"></auro-tail>
+```
+
+<div class="exampleWrapper">
+  <!-- AURO-GENERATED-CONTENT:START (FILE:src=../apiExamples/borders.html) -->
+  <!-- AURO-GENERATED-CONTENT:END -->
+</div>
+
+<auro-accordion alignRight>
+  <span slot="trigger">See code</span>
+<!-- AURO-GENERATED-CONTENT:START (CODE:src=../apiExamples/borders.html) -->
+<!-- AURO-GENERATED-CONTENT:END -->
+</auro-accordion>
 
 ### Theme Support
 

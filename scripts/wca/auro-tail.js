@@ -2,7 +2,7 @@ import { AuroTail } from "../../src/auro-tail.js";
 import { AuroTailGroup } from "../../src/auro-tail-group.js";
 
 /**
- * The auro-tail element displays Alaska, Hawaiian, and partner airline tail graphics for consistent visual representation across Auro applications.
+ * The auro-tail element displays Alaska, Hawaiian, and partner airline tail graphics for consistent visual representation across Alaska applications.
  */
 class AuroTailWCA extends AuroTail {}
 
