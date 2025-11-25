@@ -10,3 +10,21 @@ export function i18nTemplate(template, values = {}) {
     return key in values ? values[key] : match;
   });
 }
+
+/**
+ * Checks if an element is an AuroTail
+ * @param {Element} element - The element to check
+ * @returns {boolean}
+ */
+export function isAuroTailElement(element) {
+  return element.constructor?.isAuroTail === true;
+}
+
+/**
+ * Checks if an element is an AuroTailGroup
+ * @param {HTMLElement} element - The element to check
+ * @returns {boolean}
+ */
+export function isAuroTailGroupElement(element) {
+  return element.constructor?.isAuroTailGroup === true;
+}
