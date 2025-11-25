@@ -41,7 +41,7 @@ The `<auro-tail>` custom element displays Alaska, Hawaiian, and partner airline 
 
 ### Features
 
-- **Partner Airlines**: Supports AAG & partner airlines, with logos provided by the `<auro-icon>` repository
+- **AAG & Partner Airlines**: Logos provided by the `<auro-icon>` repository
 - **Flexible Sizing**: Offers a flexible size scale to accommodate various design requirements
 - **Group Layout**: Display multiple tails together in paired layouts
 - **Badge Support**: Display badges like OneWorld Alliance
@@ -95,16 +95,6 @@ In cases where the project is not able to process JS assets, there are pre-proce
 
 ```html
 <auro-tail tail="AS"></auro-tail>
-<auro-tail tail="HA" size="lg" badge="oneworld"></auro-tail>
-<auro-tail-group layout="horizontal" size="lg" style="--ds-auro-tail-border-color: var(--ds-basic-color-brand-primary)">
-  <auro-tail tail="AS"></auro-tail>
-  <auro-tail tail="HA"></auro-tail>
-</auro-tail-group>
-<auro-tail-group layout="diagonal" size="sm">
-  <auro-tail tail="AS"></auro-tail>
-  <auro-tail tail="HA"></auro-tail>
-</auro-tail-group>
-<auro-tail tail="PR" size="xl" variant="outline" style="--ds-auro-tail-border-width: 3px; --ds-auro-tail-border-color: red"></auro-tail>
 ```
 <!-- AURO-GENERATED-CONTENT:END -->
 

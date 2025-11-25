@@ -135,36 +135,6 @@ describe("auro-tail", () => {
     }
   });
 
-  it("dispatches cancelable href-click event and respects preventDefault", async () => {
-    const el = await fixture(html`<auro-tail href="https://alaskaair.com" size="lg"></auro-tail>`);
-    await el.updateComplete;
-
-    // Non-canceled
-    let eventObj;
-    el.addEventListener("href-click", e => { eventObj = e; });
-    el.shadowRoot.querySelector(el.hyperlinkTag._$litStatic$).click();
-    expect(eventObj).to.exist;
-    expect(eventObj.defaultPrevented).to.be.false;
-
-    // Canceled
-    let canceledEvent;
-    el.addEventListener("href-click", e => {
-      e.preventDefault();
-      canceledEvent = e;
-    }, { once: true });
-    el.shadowRoot.querySelector(el.hyperlinkTag._$litStatic$).click();
-    expect(canceledEvent).to.exist;
-    expect(canceledEvent.defaultPrevented).to.be.true;
-  });
-
-  it("invokes internal onHrefClick callback before event dispatch", async () => {
-    const el = await fixture(html`<auro-tail href="https://alaskaair.com" size="lg"></auro-tail>`);
-    let calls = 0;
-    el.onHrefClick = () => { calls++; };
-    await el.updateComplete;
-    el.shadowRoot.querySelector(el.hyperlinkTag._$litStatic$).click();
-    expect(calls).to.equal(1);
-  });
 
   it("updates carrierType after tail change inside same instance", async () => {
     const el = await fixture(html`<auro-tail tail="HA"></auro-tail>`);
@@ -233,16 +203,6 @@ describe("auro-tail", () => {
     expect(link).to.exist;
     const slot = link.querySelector('slot[name="display"]');
     expect(slot).to.exist;
-  });
-
-  it("href-click event 'detail' prop includes href property", async () => {
-    const el = await fixture(html`<auro-tail href="https://alaskaair.com" size="lg"></auro-tail>`);
-    await el.updateComplete;
-
-    let eventDetail;
-    el.addEventListener("href-click", e => { eventDetail = e.detail; });
-    el.shadowRoot.querySelector(el.hyperlinkTag._$litStatic$).click();
-    expect(eventDetail).to.deep.equal({ href: "https://alaskaair.com" });
   });
 
   // Registering a custom name would interfere with other tests

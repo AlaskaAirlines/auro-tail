@@ -27,15 +27,7 @@ function isAuroTailGroupElement(element) {
 }
 
 /**
- * @callback HrefClickCallback
- * @param {Event} event - The click event
- * @returns {void}
- */
-
-/**
- * The auro-tail element displays Alaska, Hawaiian, and partner airline tail graphics for consistent visual representation across Alaska applications.
- *
- * @fires {CustomEvent<{ href: string }>} href-click - Fired when the auro-hyperlink is clicked.
+ * The `<auro-tail>` custom element displays Alaska, Hawaiian, and partner airline tail graphics for consistent visual representation across Alaska applications.
  */
 export class AuroTail extends LitElement {
   /**
@@ -98,7 +90,7 @@ export class AuroTail extends LitElement {
      * @type {string | undefined}
      */
     this.href = undefined;
-    
+
     /**
      * Determines the carrier type based on tail code. Valid values: `aag`, `oa`
      * Used internally for styling.
@@ -106,14 +98,6 @@ export class AuroTail extends LitElement {
      * @type {string}
      */
     this._carrierType = 'oa';
-    
-    /**
-     * Optional internal callback invoked on hyperlink click before the custom
-     * event is dispatched.
-     * @private
-     * @type {HrefClickCallback | undefined}
-     */
-    this.onHrefClick = undefined;
 
     const versioning = new AuroDependencyVersioning();
 
@@ -133,36 +117,6 @@ export class AuroTail extends LitElement {
     this.runtimeUtils = new AuroLibraryRuntimeUtils();
   }
 
-  /**
-   * Handles clicks on the href prop, invokes optional callback, and
-   * dispatches a cancelable custom event `href-click`.
-   * 
-   * If the event is canceled by a consumer, navigation is prevented.
-   *
-   * @private
-   * @param {Event} ev - The click event
-   */
-  _handleLinkClick(ev) {
-    // Invoke optional internal callback first
-    if (this.onHrefClick) {
-      this.onHrefClick(ev);
-    }
-
-    const proceed = this.dispatchEvent(
-      new CustomEvent('href-click', {
-        detail: { href: this.href },
-        bubbles: true,
-        composed: true,
-        cancelable: true,
-      })
-    );
-
-    // If any listener called event.preventDefault() on the custom event,
-    // prevent the anchor's default navigation.
-    if (!proceed) {
-      ev.preventDefault();
-    }
-  }
 
   /**
    * Gets the carrier type based on the current tail code. Returns `aag` or `oa`
@@ -319,7 +273,6 @@ export class AuroTail extends LitElement {
           <${this.hyperlinkTag}
             class="tail-hyperlink"
             href=${ifDefined(this.href)}
-            @click=${this._handleLinkClick}
           >
             ${tailContent}
             <slot name="display" class="label ${this.labelTypeClass}">${DEFAULT_AIRLINE_NAME}</slot>

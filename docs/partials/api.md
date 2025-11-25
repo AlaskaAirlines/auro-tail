@@ -3,6 +3,19 @@
 
 ## API Examples
 
+## Basic
+
+<div class="exampleWrapper">
+  <!-- AURO-GENERATED-CONTENT:START (FILE:src=../apiExamples/basic.html) -->
+  <!-- AURO-GENERATED-CONTENT:END -->
+</div>
+
+<auro-accordion alignRight>
+  <span slot="trigger">See code</span>
+<!-- AURO-GENERATED-CONTENT:START (CODE:src=../apiExamples/basic.html) -->
+<!-- AURO-GENERATED-CONTENT:END -->
+</auro-accordion>
+
 ## Badge
 
 Display predefined badges such as OneWorld Alliance using the `badge` attribute.
@@ -81,12 +94,7 @@ Certain properties are not available for all `<auto-tail>` sizes. See the table 
        
 Set the `tail` attribute to insert a tail graphic from the `<auro-icon>` repository with the corresponding icon code.
 
-
 Tail codes from `<auro-icon>` are expected to be UPPERCASE (e.g., `AS`, not `as`).
-
-> For a full list of available tail graphics & corresponding codes, click here.
- 
-Certain properties are not available for all `tail` codes. See the table below for details.
 
 The `tail` attribute is required.
 
@@ -108,7 +116,7 @@ Set the `variant` attribute to change the visual style of the tail.
 ### Available variants:
 - `outline` - Adds an outline around the tail graphic
   - Outlines apply only to partner (OA) tails
-    - AAG tails (AS & HA) never feature outlines
+    - AAG tails (`AS` & `HA`) never feature outlines
   - Width & color are predefined and not customizable
 
 <div class="exampleWrapper">
@@ -119,6 +127,38 @@ Set the `variant` attribute to change the visual style of the tail.
 <auro-accordion alignRight>
   <span slot="trigger">See code</span>
 <!-- AURO-GENERATED-CONTENT:START (CODE:src=../apiExamples/variant.html) -->
+<!-- AURO-GENERATED-CONTENT:END -->
+</auro-accordion>
+
+## CSS Customization
+
+## Borders
+
+Optional border ring around `<auro-tail>`.
+
+Use CSS custom properties to style borders:
+
+- `--ds-auro-tail-border-width`
+  - Set the border width (e.g., `3px`, `4px`)
+- `--ds-auro-tail-border-color`
+  - Set the border color (any valid CSS color value)
+
+### Styling individual tails:
+
+Set CSS custom properties directly on the `<auro-tail>` element:
+
+```html
+<auro-tail tail="AS" style="--ds-auro-tail-border-width: 3px; --ds-auro-tail-border-color: var(--ds-basic-color-brand-primary)"></auro-tail>
+```
+
+<div class="exampleWrapper">
+  <!-- AURO-GENERATED-CONTENT:START (FILE:src=../apiExamples/borders.html) -->
+  <!-- AURO-GENERATED-CONTENT:END -->
+</div>
+
+<auro-accordion alignRight>
+  <span slot="trigger">See code</span>
+<!-- AURO-GENERATED-CONTENT:START (CODE:src=../apiExamples/borders.html) -->
 <!-- AURO-GENERATED-CONTENT:END -->
 </auro-accordion>
 
@@ -135,9 +175,22 @@ Use `<auro-tail-group>` to display paired `<auro-tail>` components in a group la
    * `badge` will not be shown
    * `href` will not be displayed
 
+### Styling tails in a group
+
+CSS custom properties set on the `<auro-tail-group>` element will automatically apply to all child `<auro-tail>` elements:
+
+```html
+<auro-tail-group layout="horizontal" style="--ds-auro-tail-border-color: var(--ds-basic-color-brand-primary)">
+  <auro-tail tail="AS"></auro-tail>
+  <auro-tail tail="HA"></auro-tail>
+</auro-tail-group>
+```
+
+Border styling availability varies by layout type (see sections below).
+
 ### Diagonal
 
-- Border styles are not applicable to diagonal groups and will be ignored.
+- Border styles (`--ds-auro-tail-border-width` and `--ds-auro-tail-border-color`) are not applicable to diagonal groups and will be ignored.
 
 <div class="exampleWrapper">
   <!-- AURO-GENERATED-CONTENT:START (FILE:src=../apiExamples/group-diagonal.html) -->
@@ -152,7 +205,7 @@ Use `<auro-tail-group>` to display paired `<auro-tail>` components in a group la
 
 ### Horizontal
 
-- Border width is not customizable.
+- Border width (`--ds-auro-tail-border-width`) is not customizable.
 
 <div class="exampleWrapper">
   <!-- AURO-GENERATED-CONTENT:START (FILE:src=../apiExamples/group-horizontal.html) -->
@@ -177,35 +230,6 @@ Use `<auro-tail-group>` to display paired `<auro-tail>` components in a group la
 <auro-accordion alignRight>
   <span slot="trigger">See code</span>
 <!-- AURO-GENERATED-CONTENT:START (CODE:src=../apiExamples/group-horizontal-border.html) -->
-<!-- AURO-GENERATED-CONTENT:END -->
-</auro-accordion>
-
-## CSS Customization
-
-## Borders
-
-Optional border ring around `<auro-tail>`.
-
-Use CSS custom properties to style borders:
-
-- `--ds-auro-tail-border-width`
-  - Set the border width (e.g., `3px`, `4px`)
-- `--ds-auro-tail-border-color`
-  - Set the border color (any valid CSS color value)
-
-Example:
-```html
-<auro-tail tail="AS" style="--ds-auro-tail-border-width: 3px; --ds-auro-tail-border-color: var(--ds-basic-color-brand-primary)"></auro-tail>
-```
-
-<div class="exampleWrapper">
-  <!-- AURO-GENERATED-CONTENT:START (FILE:src=../apiExamples/borders.html) -->
-  <!-- AURO-GENERATED-CONTENT:END -->
-</div>
-
-<auro-accordion alignRight>
-  <span slot="trigger">See code</span>
-<!-- AURO-GENERATED-CONTENT:START (CODE:src=../apiExamples/borders.html) -->
 <!-- AURO-GENERATED-CONTENT:END -->
 </auro-accordion>
 

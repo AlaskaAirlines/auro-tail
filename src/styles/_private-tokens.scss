@@ -27,77 +27,77 @@ $gradients: (
 
 :host {
   display: inline-block;
-  width: var(--container-w);
-  height: var(--container-w);
-  min-width: var(--container-w);
-  min-height: var(--container-w);
+  width: var(--ds-auro-tail-container-w);
+  height: var(--ds-auro-tail-container-w);
+  min-width: var(--ds-auro-tail-container-w);
+  min-height: var(--ds-auro-tail-container-w);
 
   /* Defaults (lg size + oa carrier type) */
-  --container-w: var(--container-w-lg);
-  --container-gradient: var(--gradient-oa);
-  --tail-w: var(--tail-w-lg);
-  --tail-offset-y: var(--tail-offset-y-lg);
-  --href-label-gap: var(--href-label-gap-lg);
-  --badge-w: var(--badge-w-lg);
+  --ds-auro-tail-container-w: var(--ds-auro-tail-container-w-lg);
+  --ds-auro-tail-container-gradient: var(--ds-auro-tail-gradient-oa);
+  --ds-auro-tail-tail-w: var(--ds-auro-tail-tail-w-lg);
+  --ds-auro-tail-tail-offset-y: var(--ds-auro-tail-tail-offset-y-lg);
+  --ds-auro-tail-href-label-gap: var(--ds-auro-tail-href-label-gap-lg);
+  --ds-auro-tail-badge-w: var(--ds-auro-tail-badge-w-lg);
 
   /* Border */
   /* Color values are theme-independent */
-  --border-color-default: rgba(88, 94, 103, 1);
-  --border-color-white: #ffffff;
-  --border-w-default: 0;
-  --border-display: none;
-  --border-padding: 0;
-  --border-radius-full: 999px;
+  --ds-auro-tail-border-color-default: rgba(88, 94, 103, 1);
+  --ds-auro-tail-border-color-white: #ffffff;
+  --ds-auro-tail-border-w-default: 0;
+  --ds-auro-tail-border-display: none;
+  --ds-auro-tail-border-padding: 0;
+  --ds-auro-tail-border-radius-full: 999px;
 
   /* Tail outline */
-  --tail-outline-color: var(--border-color-default);
-  --tail-outline-w: 1px;
+  --ds-auro-tail-tail-outline-color: var(--ds-auro-tail-border-color-default);
+  --ds-auro-tail-tail-outline-w: 1px;
 
   /* Shadows & z-index */
-  --tail-drop-shadow: drop-shadow(0 3px 3px rgba(0,0,0,.24)) drop-shadow(0 6px 14px rgba(0,0,0,.24));
-  --z-index-border: 1;
-  --z-index-badge: 2;
-  --z-index-group-back: 1;
-  --z-index-group-front: 2;
+  --ds-auro-tail-tail-drop-shadow: drop-shadow(0 3px 3px rgba(0,0,0,.24)) drop-shadow(0 6px 14px rgba(0,0,0,.24));
+  --ds-auro-tail-z-index-border: 1;
+  --ds-auro-tail-z-index-badge: 2;
+  --ds-auro-tail-z-index-group-back: 1;
+  --ds-auro-tail-z-index-group-front: 2;
 
   /* Badge offset defaults */
-  --badge-offset-x: 0;
-  --badge-offset-y: 0;
+  --ds-auro-tail-badge-offset-x: 0;
+  --ds-auro-tail-badge-offset-y: 0;
 
   /* Generate size tokens */
   @each $size, $props in $sizes {
     @each $prop, $value in $props {
-      --#{$prop}-#{$size}: #{$value};
+      --ds-auro-tail-#{$prop}-#{$size}: #{$value};
     }
   }
 
   /* Generate group tokens */
   @each $size, $props in $groups {
     @each $prop, $value in $props {
-      --#{$prop}-#{$size}: #{$value};
+      --ds-auro-tail-#{$prop}-#{$size}: #{$value};
     }
   }
 
   /* Generate gradient tokens */
   @each $tail, $gradient in $gradients {
-    --gradient-#{$tail}: #{$gradient};
+    --ds-auro-tail-gradient-#{$tail}: #{$gradient};
   }
 }
 
 /* Apply size-specific tokens */
 @each $size, $props in $sizes {
   :host([size="#{$size}"]) {
-    --container-w: var(--container-w-#{$size});
-    --tail-w: var(--tail-w-#{$size});
-    --tail-offset-y: var(--tail-offset-y-#{$size});
+    --ds-auro-tail-container-w: var(--ds-auro-tail-container-w-#{$size});
+    --ds-auro-tail-tail-w: var(--ds-auro-tail-tail-w-#{$size});
+    --ds-auro-tail-tail-offset-y: var(--ds-auro-tail-tail-offset-y-#{$size});
 
     @if map.has-key($props, badge-w) {
-      --badge-w: var(--badge-w-#{$size});
-      --badge-offset-x: var(--badge-offset-x-#{$size}, 0);
-      --badge-offset-y: var(--badge-offset-y-#{$size}, 0);
+      --ds-auro-tail-badge-w: var(--ds-auro-tail-badge-w-#{$size});
+      --ds-auro-tail-badge-offset-x: var(--ds-auro-tail-badge-offset-x-#{$size}, 0);
+      --ds-auro-tail-badge-offset-y: var(--ds-auro-tail-badge-offset-y-#{$size}, 0);
     }
     @if map.has-key($props, href-label-gap) {
-      --href-label-gap: var(--href-label-gap-#{$size});
+      --ds-auro-tail-href-label-gap: var(--ds-auro-tail-href-label-gap-#{$size});
     }
   }
 }
@@ -105,6 +105,6 @@ $gradients: (
 /* Apply tail gradients (case-insensitive) */
 @each $tail, $gradient in $gradients {
   :host([tail="#{$tail}" i]) {
-    --container-gradient: var(--gradient-#{$tail});
+    --ds-auro-tail-container-gradient: var(--ds-auro-tail-gradient-#{$tail});
   }
 }
