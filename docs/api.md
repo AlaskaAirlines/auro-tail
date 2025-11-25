@@ -18,12 +18,6 @@ The auro-tail element displays Alaska, Hawaiian, and partner airline tail graphi
 | -------- | ------------------------------------------------------------------- | ------ | ------------------------------------------------- |
 | register | `name` (string) - The name of element that you want to register to. |        | This will register this element with the browser. |
 
-### Events
-
-| Name       | Description                               |
-| ---------- | ----------------------------------------- |
-| href-click | Fired when the auro-hyperlink is clicked. |
-
 # auro-tail-group
 
 The auro-tail-group element displays multiple auro-tail elements in a grouped layout.

@@ -7,7 +7,7 @@
 
 ### Features
 
-- **Partner Airlines**: Supports AAG & partner airlines, with logos provided by the `<auro-icon>` repository
+- **AAG & Partner Airlines**: Logos provided by the `<auro-icon>` repository
 - **Flexible Sizing**: Offers a flexible size scale to accommodate various design requirements
 - **Group Layout**: Display multiple tails together in paired layouts
 - **Badge Support**: Display badges like OneWorld Alliance
