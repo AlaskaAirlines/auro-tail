@@ -1,6 +1,6 @@
 # auro-tail
 
-The `<auro-tail>` custom element displays Alaska, Hawaiian, and partner airline tail graphics for consistent visual representation across Alaska applications.
+The `<auro-tail>` element displays Alaska, Hawaiian, and partner airline tail graphics for consistent visual representation across Alaska applications.
 
 ### Properties & Attributes
 
@@ -20,7 +20,7 @@ The `<auro-tail>` custom element displays Alaska, Hawaiian, and partner airline 
 
 # auro-tail-group
 
-The auro-tail-group element displays multiple auro-tail elements in a grouped layout.
+The `<auro-tail-group>` element displays multiple `<auro-tail>` elements in a grouped layout.
 
 ### Properties & Attributes
 

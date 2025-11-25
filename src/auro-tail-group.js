@@ -9,7 +9,7 @@ import groupStyleCss from './styles/auro-tail-group.scss';
  */
 
 /**
- * The auro-tail-group element displays multiple auro-tail elements in a grouped layout. When tails are placed within a group, labels/links and badge logos are not displayed, and only two tails can be paired together.
+ * The `<auro-tail-group>` element displays multiple `<auro-tail>` elements in a grouped layout.
  */
 export class AuroTailGroup extends LitElement {
   /**
