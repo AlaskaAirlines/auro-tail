@@ -1,6 +1,7 @@
 import AuroLibraryRuntimeUtils from "@aurodesignsystem/auro-library/scripts/utils/runtimeUtils.mjs";
 import { LitElement, html, nothing } from 'lit';
 import { GROUPS_SIZES } from './constants';
+import { isAuroTailElement } from './utils';
 import groupStyleCss from './styles/auro-tail-group.scss';
 
 /**
@@ -8,20 +9,12 @@ import groupStyleCss from './styles/auro-tail-group.scss';
  */
 
 /**
- * Checks if an element is an AuroTail
- * @param {Element} element - The element to check
- * @returns {element is AuroTailElement}
- */
-function isAuroTailElement(element) {
-  return element.constructor?.isAuroTail === true;
-}
-
-/**
  * The auro-tail-group element displays multiple auro-tail elements in a grouped layout. When tails are placed within a group, labels/links and badge logos are not displayed, and only two tails can be paired together.
  */
 export class AuroTailGroup extends LitElement {
   /**
    * Identifies this element as an auro-tail-group.
+   * Used by auro-tail to identify when it's inside an auro-tail-group.
    * @private
    * @type {boolean}
    */

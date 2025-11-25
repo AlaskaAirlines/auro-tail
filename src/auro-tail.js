@@ -8,7 +8,7 @@ import { AuroIcon } from "@aurodesignsystem/auro-icon/class";
 import hyperlinkVersion from "./hyperlinkVersion.js";
 import iconVersion from "./iconVersion.js";
 import { BADGE_LOGOS, LINKS_SIZES, BADGES_SIZES, ARIA_LABELS, DEFAULT_AIRLINE_NAME } from './constants';
-import { i18nTemplate } from './utils';
+import { i18nTemplate, isAuroTailGroupElement } from './utils';
 import styleCss from './styles/auro-tail.scss';
 
 /**
@@ -18,20 +18,12 @@ import styleCss from './styles/auro-tail.scss';
  */
 
 /**
- * Checks if an element is an AuroTailGroup
- * @param {HTMLElement} element - The element to check
- * @returns {boolean}
- */
-function isAuroTailGroupElement(element) {
-  return element.constructor?.isAuroTailGroup === true;
-}
-
-/**
  * The `<auro-tail>` custom element displays Alaska, Hawaiian, and partner airline tail graphics for consistent visual representation across Alaska applications.
  */
 export class AuroTail extends LitElement {
   /**
    * Identifies this element as an auro-tail.
+   * Used by auro-tail-group to identify valid child elements.
    * @private
    * @type {boolean}
    */
