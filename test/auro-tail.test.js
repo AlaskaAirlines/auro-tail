@@ -195,13 +195,13 @@ describe("auro-tail", () => {
   it("renders slot content as label in hyperlink", async () => {
     const el = await fixture(html`
       <auro-tail href="https://alaskaair.com" size="lg">
-        <span slot="display">Custom Label</span>
+        <span>Custom Label</span>
       </auro-tail>
     `);
     await el.updateComplete;
     const link = el.shadowRoot.querySelector(el.hyperlinkTag._$litStatic$);
     expect(link).to.exist;
-    const slot = link.querySelector('slot[name="display"]');
+    const slot = link.querySelector('slot');
     expect(slot).to.exist;
   });
 

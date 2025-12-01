@@ -267,7 +267,7 @@ export class AuroTail extends LitElement {
             href=${ifDefined(this.href)}
           >
             ${tailContent}
-            <slot name="display" class="label ${this.labelTypeClass}">${DEFAULT_AIRLINE_NAME}</slot>
+            <slot class="label ${this.labelTypeClass}">${DEFAULT_AIRLINE_NAME}</slot>
           </${this.hyperlinkTag}>
         </div>
       `;
