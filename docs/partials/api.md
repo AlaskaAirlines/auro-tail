@@ -49,7 +49,7 @@ Make tails clickable by adding an `href` attribute. This displays a clickable li
 
 ```html
 <auro-tail tail="HA" size="md" href="https://hawaiianairlines.com/">
-  <span slot="display">Hawaiian Airlines</span>
+  <span>Hawaiian Airlines</span>
 </auro-tail>
 ```
 
