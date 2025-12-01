@@ -9,6 +9,7 @@ import groupStyleCss from './styles/auro-tail-group.scss';
  */
 
 /**
+ * @customElement auro-tail-group
  * The `<auro-tail-group>` element displays multiple `<auro-tail>` elements in a grouped layout.
  */
 export class AuroTailGroup extends LitElement {
@@ -26,7 +27,18 @@ export class AuroTailGroup extends LitElement {
 
   static get properties() {
     return {
+      /**
+       * Sets the layout direction for the group.
+       * @type {'horizontal' | 'diagonal'}
+       * @default 'horizontal'
+       */
       layout: { type: String, attribute: 'layout', reflect: true },
+
+      /**
+       * Sets the size for all child tails in the group.
+       * @type {'xs' | 'sm' | 'md' | 'lg'}
+       * @default 'lg'
+       */
       size: { type: String, attribute: 'size', reflect: true }
     };
   }
@@ -43,25 +55,22 @@ export class AuroTailGroup extends LitElement {
     AuroLibraryRuntimeUtils.prototype.registerComponent(name, AuroTailGroup);
   }
 
+  // Initialize default property values
+  // Necessarry to avoid type errors
+  #setDefaults() {
+    this.layout = 'horizontal';
+    this.size = 'lg'
+  }
+
   constructor() {
     super();
-    /**
-     * Sets the layout direction for the group. Valid values: `horizontal`, `diagonal`
-     * @type {string}
-     */
-    this.layout = 'horizontal';
-    /**
-     * Sets the size for all child tails in the group. Valid values: `xs`, `sm`, `md`, `lg`
-     * @type {string}
-     */
-    this.size = 'lg';
+    this.#setDefaults();
 
     /**
      * @private
      */
     this.runtimeUtils = new AuroLibraryRuntimeUtils();
   }
-
 
   connectedCallback() {
     super.connectedCallback();
