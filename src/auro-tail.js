@@ -18,6 +18,7 @@ import styleCss from './styles/auro-tail.scss';
  */
 
 /**
+ * @customElement auro-tail
  * The `<auro-tail>` custom element displays Alaska, Hawaiian, and partner airline tail graphics for consistent visual representation across Alaska applications.
  */
 export class AuroTail extends LitElement {
@@ -35,10 +36,33 @@ export class AuroTail extends LitElement {
 
   static get properties() {
     return {
+      /**
+       * Sets the airline tail based on the tail codes used in auro-icon (e.g., `AS`, `HA`, `PR`).
+       * @default 'AS'
+       */
       tail: { type: String },
+
+      /**
+       * Sets the badge type to display (e.g., `oneworld`).
+       */
       badge: { type: String },
+
+      /**
+       * Sets the size of the tail.
+       * @type {'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl'}
+       * @default 'lg'
+       */
       size: { type: String, reflect: true },
+
+      /**
+       * Sets the visual variant of the tail.
+       * @type {'outline'}
+       */
       variant: { type: String, reflect: true },
+
+      /**
+       * Sets the href for the tail.
+       */
       href: { type: String, attribute: 'href' }
     };
   }
@@ -55,33 +79,16 @@ export class AuroTail extends LitElement {
     AuroLibraryRuntimeUtils.prototype.registerComponent(name, AuroTail);
   }
 
+  // Initialize default property values
+  // Necessarry to avoid type errors
+  #setDefaults() {
+    this.tail = 'AS';
+    this.size = 'lg';
+  }
+
   constructor() {
     super();
-    /**
-     * Sets the airline tail based on the tail codes used in auro-icon (e.g., `AS`, `HA`, `PR`).
-     * @type {string}
-     */
-    this.tail = 'AS';
-    /**
-     * Sets the badge type to display (e.g., `oneworld`).
-     * @type {string | undefined}
-     */
-    this.badge = undefined;
-    /**
-     * Sets the size of the tail. Valid values: `xs`, `sm`, `md`, `lg`, `xl`, `2xl`
-     * @type {string}
-     */
-    this.size = 'lg';
-    /**
-     * Sets the visual variant of the tail. Valid values: `outline`
-     * @type {string | undefined}
-     */
-    this.variant = undefined;
-    /**
-     * Sets the href for the tail.
-     * @type {string | undefined}
-     */
-    this.href = undefined;
+    this.#setDefaults();
 
     /**
      * Determines the carrier type based on tail code. Valid values: `aag`, `oa`
