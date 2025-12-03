@@ -80,7 +80,7 @@ export class AuroTail extends LitElement {
   }
 
   // Initialize default property values
-  // Necessarry to avoid type errors
+  // Necessary to avoid type errors
   #setDefaults() {
     this.tail = 'AS';
     this.size = 'lg';
