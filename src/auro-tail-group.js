@@ -56,7 +56,7 @@ export class AuroTailGroup extends LitElement {
   }
 
   // Initialize default property values
-  // Necessarry to avoid type errors
+  // Necessary to avoid type errors
   #setDefaults() {
     this.layout = 'horizontal';
     this.size = 'lg'
