@@ -1,0 +1,127 @@
+@use 'sass:map';
+@use './tokens.scss';
+@use './private-tokens.scss' as private;
+
+/* Get group sizes from $groups map keys */
+$group-sizes: map.keys(private.$groups);
+
+/*
+ * Horizontal Layout
+ * Tails overlap with negative margin for visual effect
+ */
+@each $size in $group-sizes {
+  :host([layout="horizontal"][size="#{$size}"]) {
+    /* Account for container widths, border on each tail, and overlap */
+    width: calc(
+      2 * var(--ds-auro-tail-container-w-#{$size}) +
+      2 * var(--ds-auro-tail-group-horiz-border-w-#{$size}) +
+      var(--ds-auro-tail-group-horiz-overlap-#{$size})
+    );
+    height: calc(var(--ds-auro-tail-container-w-#{$size}) + 2 * var(--ds-auro-tail-group-horiz-border-w-#{$size}));
+    min-height: calc(var(--ds-auro-tail-container-w-#{$size}) + 2 * var(--ds-auro-tail-group-horiz-border-w-#{$size}));
+  }
+}
+
+:host {
+  /* Allow border-color to be set on the group and inherited by child tails */
+  --ds-auro-tail-group-border-color: var(--ds-auro-tail-border-color);
+}
+
+:host([layout="horizontal"]) {
+  /* Horizontal groups default to white borders */
+  --ds-auro-tail-border-color: var(--ds-auro-tail-border-color-white);
+  --ds-auro-tail-group-border-color: var(--ds-auro-tail-border-color);
+}
+
+.group {
+  display: inline-flex;
+  position: relative;
+}
+
+.group.horizontal {
+  /* Remove gap to control visual overlap */
+  gap: 0;
+}
+
+/*
+ * Horizontal group
+ * Overlap the first tail over the succeeding tail using negative margin
+ * Support both standard auro-tail and custom-registered components via [auro-tail] attribute
+ */
+:host([layout="horizontal"]) .group.horizontal ::slotted(auro-tail),
+:host([layout="horizontal"]) .group.horizontal ::slotted([auro-tail]) {
+  position: relative;
+  /* Inherit border-color from group if set, otherwise use default */
+  --ds-auro-tail-border-color: var(--ds-auro-tail-group-border-color, var(--ds-auro-tail-border-color-white));
+}
+
+/* Apply size-specific border widths and overlaps */
+@each $size in $group-sizes {
+  :host([layout="horizontal"][size="#{$size}"]) .group.horizontal ::slotted(auro-tail),
+  :host([layout="horizontal"][size="#{$size}"]) .group.horizontal ::slotted([auro-tail]) {
+    --ds-auro-tail-border-width: var(--ds-auro-tail-group-horiz-border-w-#{$size});
+    /* Expand host width to include borders on both sides */
+    width: calc(var(--ds-auro-tail-container-w-#{$size}) + 2 * var(--ds-auro-tail-group-horiz-border-w-#{$size}));
+    min-width: calc(var(--ds-auro-tail-container-w-#{$size}) + 2 * var(--ds-auro-tail-group-horiz-border-w-#{$size}));
+  }
+
+  :host([layout="horizontal"][size="#{$size}"]) .group.horizontal ::slotted(auro-tail:first-child),
+  :host([layout="horizontal"][size="#{$size}"]) .group.horizontal ::slotted([auro-tail]:first-child) {
+    /* Compensate overlap for expanded tail widths (borders on both sides of both tails)
+    
+    Because this is slotted content & appears in the light DOM, use !important to override any external CSS resets
+    */
+    margin-right: calc(var(--ds-auro-tail-group-horiz-overlap-#{$size}) - 2 * var(--ds-auro-tail-group-horiz-border-w-#{$size})) !important;
+    /* First tail above second */
+    z-index: var(--ds-auro-tail-z-index-group-front);
+  }
+}
+
+/* Second tail below first */
+:host([layout="horizontal"]) .group.horizontal ::slotted(auro-tail:last-child),
+:host([layout="horizontal"]) .group.horizontal ::slotted([auro-tail]:last-child) {
+  z-index: var(--ds-auro-tail-z-index-group-back);
+}
+
+/*
+ * Diagonal Layout
+ * Tails positioned at opposite corners
+ */
+
+/* Apply size-specific host dimensions for diagonal groups */
+@each $size in $group-sizes {
+  :host([layout="diagonal"][size="#{$size}"]) {
+    width: var(--ds-auro-tail-group-diag-w-#{$size});
+    height: var(--ds-auro-tail-group-diag-w-#{$size});
+  }
+
+  :host([layout="diagonal"][size="#{$size}"]) .group.diagonal {
+    width: var(--ds-auro-tail-group-diag-w-#{$size});
+    height: var(--ds-auro-tail-group-diag-w-#{$size});
+  }
+}
+
+/* Diagonal group - remove borders from tails per spec */
+:host([layout="diagonal"]) .group.diagonal ::slotted(auro-tail),
+:host([layout="diagonal"]) .group.diagonal ::slotted([auro-tail]) {
+  position: absolute;
+  --ds-auro-tail-border-color: transparent;
+  --ds-auro-tail-border-width: 0;
+  --ds-auro-tail-border-padding: 0;
+}
+
+/* Position first tail */
+.group.diagonal ::slotted(auro-tail:first-child),
+.group.diagonal ::slotted([auro-tail]:first-child) {
+  top: 0;
+  left: 0;
+  z-index: var(--ds-auro-tail-z-index-group-front);
+}
+
+/* Position second tail */
+.group.diagonal ::slotted(auro-tail:nth-child(2)),
+.group.diagonal ::slotted([auro-tail]:nth-child(2)) {
+  bottom: 0;
+  right: 0;
+  z-index: var(--ds-auro-tail-z-index-group-back);
+}

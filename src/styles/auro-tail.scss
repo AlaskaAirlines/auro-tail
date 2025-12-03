@@ -1,0 +1,118 @@
+@use '@aurodesignsystem/webcorestylesheets/dist/bundled/type/classes.alaska.min.css';
+@use './tokens.scss';
+@use './private-tokens.scss';
+
+.tail {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  vertical-align: middle;
+  min-width: var(--ds-auro-tail-container-w);
+  min-height: var(--ds-auro-tail-container-w);
+}
+
+/* hyperlink styling */
+.tail > .tail-hyperlink {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+  min-width: var(--ds-auro-tail-container-w);
+  min-height: var(--ds-auro-tail-container-w);
+}
+
+.tail > .tail-hyperlink .label {
+  display: block;
+  margin-top: var(--ds-auro-tail-href-label-gap);
+  text-align: center;
+  min-width: var(--ds-auro-tail-container-w);
+  white-space: nowrap;
+  overflow: visible;
+  text-overflow: clip;
+}
+
+.border {
+  position: relative;
+  width: var(--ds-auro-tail-container-w);
+  height: var(--ds-auro-tail-container-w);
+  border-radius: var(--ds-auro-tail-border-radius-full);
+  display: grid;
+  place-items: center;
+  /* Center the tail when featured in a hyperlink */
+  margin: 0 auto;
+  box-sizing: content-box;
+  /* Border is applied via CSS custom properties - only visible when --ds-auro-tail-border-width is set */
+  border: var(--ds-auro-tail-border-width, 0) solid var(--ds-auro-tail-border-color, var(--ds-auro-tail-border-color-default));
+}
+
+/* Expand host dimensions to include border */
+:host {
+  width: calc(var(--ds-auro-tail-container-w) + 2 * var(--ds-auro-tail-border-width, 0px));
+  height: calc(var(--ds-auro-tail-container-w) + 2 * var(--ds-auro-tail-border-width, 0px));
+  min-width: calc(var(--ds-auro-tail-container-w) + 2 * var(--ds-auro-tail-border-width, 0px));
+  min-height: calc(var(--ds-auro-tail-container-w) + 2 * var(--ds-auro-tail-border-width, 0px));
+}
+
+.container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: var(--ds-auro-tail-border-radius-full);
+  background: var(--ds-auro-tail-container-gradient);
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+}
+
+.container [auro-icon] {
+  --ds-auro-icon-size: var(--ds-auro-tail-tail-w);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  /*
+    Scale compensates for 88px of extra padding in
+    SVG viewBox (856x830) of tail icons from auro-icon (856/(856-88*2) = 1.259)
+  */
+  transform: translate(-50%, calc(-50% + var(--ds-auro-tail-tail-offset-y))) scale(1.26);
+  transform-origin: center;
+  pointer-events: none;
+}
+
+.badge {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  /* For minute adjustments, use transform to avoid affecting layout */
+  transform: translate(var(--ds-auro-tail-badge-offset-x), var(--ds-auro-tail-badge-offset-y));
+  width: var(--ds-auro-tail-badge-w);
+  height: var(--ds-auro-tail-badge-w);
+  object-fit: contain;
+  border-radius: var(--ds-auro-tail-border-radius-full);
+  z-index: var(--ds-auro-tail-z-index-badge);
+}
+
+/* drop-shadow: apply to AAG carriers */
+:host([data-carrier-type="aag"]) [auro-icon] {
+  filter: var(--ds-auro-tail-tail-drop-shadow);
+}
+
+/* outline: apply to OA carriers only when variant="outline" prop is present */
+/* Use multiple sharp drop-shadows to create crisp outline & trace SVG curves */
+/* Margin offset accounts for stacked drop-shadows (1px per drop-shadow line) to shift layout within container */
+:host([data-carrier-type="oa"][variant="outline"]) [auro-icon] {
+  margin-left: calc(-1 * var(--ds-auro-tail-tail-outline-w) * 2);
+  margin-top: calc(var(--ds-auro-tail-tail-outline-w) * 2);
+  filter:
+    drop-shadow(var(--ds-auro-tail-tail-outline-w) 0 0 var(--ds-auro-tail-tail-outline-color))
+    drop-shadow(calc(-1 * var(--ds-auro-tail-tail-outline-w)) 0 0 var(--ds-auro-tail-tail-outline-color))
+    drop-shadow(0 var(--ds-auro-tail-tail-outline-w) 0 var(--ds-auro-tail-tail-outline-color))
+    drop-shadow(0 calc(-1 * var(--ds-auro-tail-tail-outline-w)) 0 var(--ds-auro-tail-tail-outline-color));
+}
+
+/* When href is present, allow component to expand to fit content */
+:host([href]) {
+  width: max-content;
+  height: max-content;
+  min-height: max-content;
+  vertical-align: bottom;
+}

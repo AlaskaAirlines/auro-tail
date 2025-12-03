@@ -1,0 +1,7 @@
+/* Public API Tokens - Consumer Customizable */
+
+:host {
+  /* Border tokens */
+  --ds-auro-tail-border-color: var(--ds-auro-tail-border-color-default);
+  --ds-auro-tail-border-width: var(--ds-auro-tail-border-w-default);
+}
