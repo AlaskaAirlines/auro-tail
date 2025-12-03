@@ -67,8 +67,11 @@ $group-sizes: map.keys(private.$groups);
 
   :host([layout="horizontal"][size="#{$size}"]) .group.horizontal ::slotted(auro-tail:first-child),
   :host([layout="horizontal"][size="#{$size}"]) .group.horizontal ::slotted([auro-tail]:first-child) {
-    /* Compensate overlap for expanded tail widths (borders on both sides of both tails) */
-    margin-right: calc(var(--ds-auro-tail-group-horiz-overlap-#{$size}) - 2 * var(--ds-auro-tail-group-horiz-border-w-#{$size}));
+    /* Compensate overlap for expanded tail widths (borders on both sides of both tails)
+    
+    Because this is slotted content & appears in the light DOM, use !important to override any external CSS resets
+    */
+    margin-right: calc(var(--ds-auro-tail-group-horiz-overlap-#{$size}) - 2 * var(--ds-auro-tail-group-horiz-border-w-#{$size})) !important;
     /* First tail above second */
     z-index: var(--ds-auro-tail-z-index-group-front);
   }
