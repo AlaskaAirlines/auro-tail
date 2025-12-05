@@ -118,7 +118,7 @@ You can do this by importing only the component class and using the `register(na
   <custom-tail tail="AS" size="2xl"></custom-tail>
   <custom-tail-group size="lg">
     <custom-tail tail="HA"></custom-tail>
-    <custom-tail tail="DL"></custom-tail>
+    <custom-tail tail="AA"></custom-tail>
   </custom-tail-group>
   <!-- AURO-GENERATED-CONTENT:END -->
 </div>
@@ -131,7 +131,7 @@ You can do this by importing only the component class and using the `register(na
 <custom-tail tail="AS" size="2xl"></custom-tail>
 <custom-tail-group size="lg">
   <custom-tail tail="HA"></custom-tail>
-  <custom-tail tail="DL"></custom-tail>
+  <custom-tail tail="AA"></custom-tail>
 </custom-tail-group>
 ```
 <!-- AURO-GENERATED-CONTENT:END -->
