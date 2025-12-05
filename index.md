@@ -32,13 +32,13 @@ The `<auro-tail>` custom element displays Alaska, Hawaiian, and partner airline 
 - **Clickable Links**: Make tails clickable with `<auro-hyperlink>`
 <!-- AURO-GENERATED-CONTENT:END -->
 
-## Example(s)
+## Examples
 
 <div class="exampleWrapper">
   <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../apiExamples/overview.html) -->
   <!-- The below content is automatically added from ./../apiExamples/overview.html -->
-  <auro-tail tail="AS"></auro-tail>
-  <auro-tail tail="HA" size="lg" badge="oneworld"></auro-tail>
+  <auro-tail tail="AS" badge="oneworld"></auro-tail>
+  <auro-tail tail="HA" size="lg"></auro-tail>
   <auro-tail-group layout="horizontal" size="lg" style="--ds-auro-tail-border-color: var(--ds-basic-color-brand-primary)">
     <auro-tail tail="AS"></auro-tail>
     <auro-tail tail="HA"></auro-tail>
@@ -47,7 +47,7 @@ The `<auro-tail>` custom element displays Alaska, Hawaiian, and partner airline 
     <auro-tail tail="AS"></auro-tail>
     <auro-tail tail="HA"></auro-tail>
   </auro-tail-group>
-  <auro-tail tail="PR" size="xl" variant="outline" style="--ds-auro-tail-border-width: 3px; --ds-auro-tail-border-color: red"></auro-tail>
+  <auro-tail tail="PR" size="xl" variant="outline"></auro-tail>
   <!-- AURO-GENERATED-CONTENT:END -->
 </div>
 <auro-accordion alignRight>
@@ -56,8 +56,8 @@ The `<auro-tail>` custom element displays Alaska, Hawaiian, and partner airline 
 <!-- The below code snippet is automatically added from ./../apiExamples/overview.html -->
 
 ```html
-<auro-tail tail="AS"></auro-tail>
-<auro-tail tail="HA" size="lg" badge="oneworld"></auro-tail>
+<auro-tail tail="AS" badge="oneworld"></auro-tail>
+<auro-tail tail="HA" size="lg"></auro-tail>
 <auro-tail-group layout="horizontal" size="lg" style="--ds-auro-tail-border-color: var(--ds-basic-color-brand-primary)">
   <auro-tail tail="AS"></auro-tail>
   <auro-tail tail="HA"></auro-tail>
@@ -66,7 +66,7 @@ The `<auro-tail>` custom element displays Alaska, Hawaiian, and partner airline 
   <auro-tail tail="AS"></auro-tail>
   <auro-tail tail="HA"></auro-tail>
 </auro-tail-group>
-<auro-tail tail="PR" size="xl" variant="outline" style="--ds-auro-tail-border-width: 3px; --ds-auro-tail-border-color: red"></auro-tail>
+<auro-tail tail="PR" size="xl" variant="outline"></auro-tail>
 ```
 <!-- AURO-GENERATED-CONTENT:END -->
 </auro-accordion>
@@ -95,7 +95,7 @@ This will create a new custom element that you can use in your HTML that will fu
   <custom-tail tail="AS" size="2xl"></custom-tail>
   <custom-tail-group size="lg">
     <custom-tail tail="HA"></custom-tail>
-    <custom-tail tail="DL"></custom-tail>
+    <custom-tail tail="AA"></custom-tail>
   </custom-tail-group>
   <!-- AURO-GENERATED-CONTENT:END -->
 </div>
@@ -108,7 +108,7 @@ This will create a new custom element that you can use in your HTML that will fu
 <custom-tail tail="AS" size="2xl"></custom-tail>
 <custom-tail-group size="lg">
   <custom-tail tail="HA"></custom-tail>
-  <custom-tail tail="DL"></custom-tail>
+  <custom-tail tail="AA"></custom-tail>
 </custom-tail-group>
 ```
 <!-- AURO-GENERATED-CONTENT:END -->
