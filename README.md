@@ -111,6 +111,16 @@ You can do this by importing only the component class and using the `register(na
 
 <!-- AURO-GENERATED-CONTENT:START (FILE:src=./docs/partials/customRegistration.md) -->
 <!-- The below content is automatically added from ./docs/partials/customRegistration.md -->
+
+```js
+// Import the class only
+import { AuroTail } from '@aurodesignsystem/auro-tail/class';
+
+// Register with a custom name if desired
+AuroTail.register('custom-tail');
+```
+
+This will create a new custom element `<custom-tail>` that behaves exactly like `<auro-tail>`, allowing both to coexist on the same page without interfering with each other.
 <!-- AURO-GENERATED-CONTENT:END -->
 <div class="exampleWrapper exampleWrapper--flex">
   <!-- AURO-GENERATED-CONTENT:START (FILE:src=./apiExamples/custom.html) -->
