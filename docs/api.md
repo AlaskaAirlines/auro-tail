@@ -1,5 +1,7 @@
 # auro-tail
 
+The `auro-tail` custom element displays Alaska, Hawaiian, and partner airline tail graphics for consistent visual representation across Alaska applications.
+
 ### Properties & Attributes
 
 | Properties | Attributes | Modifiers | Type                                          | Default | Description                                                                               |
@@ -12,11 +14,13 @@
 
 ### Methods
 
-| Name     | Parameters                                                          | Return | Description                                       |
-| -------- | ------------------------------------------------------------------- | ------ | ------------------------------------------------- |
-| register | `name` (string) - The name of element that you want to register to. |        | This will register this element with the browser. |
+| Name     | Parameters                                                           | Return | Description                                       |
+| -------- | -------------------------------------------------------------------- | ------ | ------------------------------------------------- |
+| register | `name` (string) - The name of the element that you want to register. |        | This will register this element with the browser. |
 
 # auro-tail-group
+
+The `auro-tail-group` element displays multiple `auro-tail` elements in a grouped layout.
 
 ### Properties & Attributes
 
