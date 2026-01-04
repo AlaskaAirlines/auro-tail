@@ -1,7 +1,9 @@
-<!-- AURO-GENERATED-CONTENT:START (FILE:src=../docs/api.md) -->
-<!-- The below content is automatically added from ../docs/api.md -->
+<!-- AURO-GENERATED-CONTENT:START (FILE:src=./../docs/api.md) -->
+<!-- The below content is automatically added from ./../docs/api.md -->
 
 # auro-tail
+
+The `auro-tail` custom element displays Alaska, Hawaiian, and partner airline tail graphics for consistent visual representation across Alaska applications.
 
 ### Properties & Attributes
 
@@ -15,11 +17,13 @@
 
 ### Methods
 
-| Name     | Parameters                                                          | Return | Description                                       |
-| -------- | ------------------------------------------------------------------- | ------ | ------------------------------------------------- |
-| register | `name` (string) - The name of element that you want to register to. |        | This will register this element with the browser. |
+| Name     | Parameters                                                           | Return | Description                                       |
+| -------- | -------------------------------------------------------------------- | ------ | ------------------------------------------------- |
+| register | `name` (string) - The name of the element that you want to register. |        | This will register this element with the browser. |
 
 # auro-tail-group
+
+The `auro-tail-group` element displays multiple `auro-tail` elements in a grouped layout.
 
 ### Properties & Attributes
 
@@ -35,20 +39,18 @@
 | register | `name` (string) - The name of element that you want to register to. |        | This will register this element with the browser. |
 <!-- AURO-GENERATED-CONTENT:END -->
 
-## API Examples
-
 ## Basic
 
 <div class="exampleWrapper">
-  <!-- AURO-GENERATED-CONTENT:START (FILE:src=../apiExamples/basic.html) -->
-  <!-- The below content is automatically added from ../apiExamples/basic.html -->
+  <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../apiExamples/basic.html) -->
+  <!-- The below content is automatically added from ./../apiExamples/basic.html -->
   <auro-tail tail="AS"></auro-tail>
   <!-- AURO-GENERATED-CONTENT:END -->
 </div>
 <auro-accordion alignRight>
   <span slot="trigger">See code</span>
-<!-- AURO-GENERATED-CONTENT:START (CODE:src=../apiExamples/basic.html) -->
-<!-- The below code snippet is automatically added from ../apiExamples/basic.html -->
+<!-- AURO-GENERATED-CONTENT:START (CODE:src=./../apiExamples/basic.html) -->
+<!-- The below code snippet is automatically added from ./../apiExamples/basic.html -->
 
 ```html
 <auro-tail tail="AS"></auro-tail>
@@ -56,11 +58,13 @@
 <!-- AURO-GENERATED-CONTENT:END -->
 </auro-accordion>
 
-## Badge
+## Auro-Tail Property & Attribute Examples
+
+### Badge
 
 Display predefined badges such as OneWorld Alliance using the `badge` attribute.
 
-### Supported sizes:
+#### Supported sizes:
 - `md`, `lg`, `xl`, `2xl`
 
 > `badge` prop is not displayed when in an `<auro-tail-group>`.
@@ -144,7 +148,7 @@ Make tails clickable by adding an `href` attribute. This displays a clickable li
 <!-- AURO-GENERATED-CONTENT:END -->
 </auro-accordion>
 
-## Size
+### Size
 
 Control the size of `<auro-tail>` with the `size` attribute.
 
@@ -186,7 +190,7 @@ Certain properties are not available for all `<auto-tail>` sizes. See the table 
 <!-- AURO-GENERATED-CONTENT:END -->
 </auro-accordion>
 
-## Tail
+### Tail
 
 Set the `tail` attribute to insert a tail graphic from the `<auro-icon>` repository with the corresponding icon code.
 
@@ -215,11 +219,11 @@ The `tail` attribute is required.
 <!-- AURO-GENERATED-CONTENT:END -->
 </auro-accordion>
 
-## Variant
+### Variant
 
 Set the `variant` attribute to change the visual style of the tail.
 
-### Available variants:
+#### Available variants:
 - `outline` - Adds an outline around the tail graphic
   - Outlines apply only to partner (OA) tails
     - AAG tails (`AS` & `HA`) never feature outlines
@@ -248,9 +252,9 @@ Set the `variant` attribute to change the visual style of the tail.
 <!-- AURO-GENERATED-CONTENT:END -->
 </auro-accordion>
 
-## CSS Customization
+## Common Usage Patterns & Functional Examples
 
-## Borders
+### Borders
 
 Optional border ring around `<auro-tail>`.
 
@@ -261,7 +265,7 @@ Use CSS custom properties to style borders:
 - `--ds-auro-tail-border-color`
   - Set the border color (any valid CSS color value)
 
-### Styling individual tails:
+#### Styling individual tails:
 
 Set CSS custom properties directly on the `<auro-tail>` element:
 
@@ -292,8 +296,7 @@ Set CSS custom properties directly on the `<auro-tail>` element:
 <!-- AURO-GENERATED-CONTENT:END -->
 </auro-accordion>
 
-## auro-tail-group
-Use `<auro-tail-group>` to display paired `<auro-tail>` components in a group layout with specific behavioral constraints and visual treatments.
+## Auro-Tail-Group Property & Attribute Examples
 
 ### Supported sizes:
 - `xs`, `sm`, `md`, `lg`
@@ -471,12 +474,12 @@ Border styling availability varies by layout type (see sections below).
 <!-- AURO-GENERATED-CONTENT:END -->
 </auro-accordion>
 
-### Theme Support
+## Restyle Component with CSS Variables
 
-The component may be restyled using the following code sample and changing the values of the following token(s).
+The component may be restyled by changing the values of the following token(s).
 
-<!-- AURO-GENERATED-CONTENT:START (CODE:src=../src/styles/tokens.scss) -->
-<!-- The below code snippet is automatically added from ../src/styles/tokens.scss -->
+<!-- AURO-GENERATED-CONTENT:START (CODE:src=./../src/styles/tokens.scss) -->
+<!-- The below code snippet is automatically added from ./../src/styles/tokens.scss -->
 
 ```scss
 /* Public API Tokens - Consumer Customizable */
