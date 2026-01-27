@@ -18,8 +18,8 @@ import styleCss from './styles/auro-tail.scss';
  */
 
 /**
+ * The `auro-tail` custom element displays Alaska, Hawaiian, and partner airline tail graphics for consistent visual representation across Alaska applications.
  * @customElement auro-tail
- * The `<auro-tail>` custom element displays Alaska, Hawaiian, and partner airline tail graphics for consistent visual representation across Alaska applications.
  */
 export class AuroTail extends LitElement {
   /**
@@ -37,15 +37,14 @@ export class AuroTail extends LitElement {
   static get properties() {
     return {
       /**
-       * Sets the airline tail based on the tail codes used in auro-icon (e.g., `AS`, `HA`, `PR`).
-       * @default 'AS'
-       */
-      tail: { type: String },
-
-      /**
        * Sets the badge type to display (e.g., `oneworld`).
        */
       badge: { type: String },
+
+      /**
+       * Sets the href for the tail.
+       */
+      href: { type: String, attribute: 'href' },
 
       /**
        * Sets the size of the tail.
@@ -55,21 +54,22 @@ export class AuroTail extends LitElement {
       size: { type: String, reflect: true },
 
       /**
+       * Sets the airline tail based on the tail codes used in auro-icon (e.g., `AS`, `HA`, `PR`).
+       * @default 'AS'
+       */
+      tail: { type: String },
+
+      /**
        * Sets the visual variant of the tail.
        * @type {'outline'}
        */
-      variant: { type: String, reflect: true },
-
-      /**
-       * Sets the href for the tail.
-       */
-      href: { type: String, attribute: 'href' }
+      variant: { type: String, reflect: true }
     };
   }
 
   /**
    * This will register this element with the browser.
-   * @param {string} [name="auro-tail"] - The name of element that you want to register to.
+   * @param {string} [name="auro-tail"] - The name of the element that you want to register.
    *
    * @example
    * AuroTail.register("custom-tail") // this will register this element to <custom-tail/>

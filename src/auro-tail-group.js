@@ -9,8 +9,8 @@ import groupStyleCss from './styles/auro-tail-group.scss';
  */
 
 /**
+ * The `auro-tail-group` element displays multiple `auro-tail` elements in a grouped layout.
  * @customElement auro-tail-group
- * The `<auro-tail-group>` element displays multiple `<auro-tail>` elements in a grouped layout.
  */
 export class AuroTailGroup extends LitElement {
   /**
