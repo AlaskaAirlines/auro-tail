@@ -18,7 +18,7 @@ describe("auro-tail", () => {
 
   it("has default property values", async () => {
     const el = await fixture(html`<auro-tail></auro-tail>`);
-    expect(el.tail).to.equal("AS");
+    expect(el.tail).to.equal(undefined);
     expect(el.size).to.equal("lg");
     expect(el.variant).to.equal(undefined);
     expect(el.href).to.equal(undefined);

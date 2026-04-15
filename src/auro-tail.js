@@ -55,7 +55,6 @@ export class AuroTail extends LitElement {
 
       /**
        * Sets the airline tail based on the tail codes used in auro-icon (e.g., `AS`, `HA`, `PR`).
-       * @default 'AS'
        */
       tail: { type: String },
 
@@ -82,7 +81,6 @@ export class AuroTail extends LitElement {
   // Initialize default property values
   // Necessary to avoid type errors
   #setDefaults() {
-    this.tail = 'AS';
     this.size = 'lg';
   }
 
@@ -130,7 +128,7 @@ export class AuroTail extends LitElement {
     };
 
     // Auro Icon uses capitalized tail codes, convert to lowercase for matching
-    const tailCode = this.tail.toLowerCase();
+    const tailCode = this.tail?.toLowerCase();
 
     // Find which carrier group contains this tail code
     for (const [variant, codes] of Object.entries(carriers)) {
@@ -259,7 +257,7 @@ export class AuroTail extends LitElement {
     const tailContent = html`
       <div class="border">
         <div class="container" part="container" role="img" aria-label=${ariaLabel}>
-          <${this.iconTag} category="logos" name="tail-${this.tail.toUpperCase()}"></${this.iconTag}>
+          <${this.iconTag} category="logos" name=${this.tail ? `tail-${this.tail.toUpperCase()}` : 'tail-DEFAULT'}></${this.iconTag}>
         </div>
         ${badge?.icon ? html`<div class="badge">${badge.icon()}</div>` : null}
       </div>
