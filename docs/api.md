@@ -9,7 +9,7 @@ The `auro-tail` custom element displays Alaska, Hawaiian, and partner airline ta
 | badge      | badge      |           | string                                        |         | Sets the badge type to display (e.g., `oneworld`).                                        |
 | href       | href       |           | string                                        |         | Sets the href for the tail.                                                               |
 | size       | size       |           | `xs` \| `sm` \| `md` \| `lg` \| `xl` \| `2xl` | `lg`    | Sets the size of the tail.                                                                |
-| tail       | tail       |           | string                                        | `AS`    | Sets the airline tail based on the tail codes used in auro-icon (e.g., `AS`, `HA`, `PR`). |
+| tail       | tail       |           | string                                        |         | Sets the airline tail based on the tail codes used in auro-icon (e.g., `AS`, `HA`, `PR`). |
 | variant    | variant    |           | `outline`                                     |         | Sets the visual variant of the tail.                                                      |
 
 ### Methods

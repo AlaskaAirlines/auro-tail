@@ -111,6 +111,24 @@ The `tail` attribute is required.
 <!-- AURO-GENERATED-CONTENT:END -->
 </auro-accordion>
 
+### Fallback
+
+When the `tail` attribute is omitted or an unrecognized tail code is provided, `<auro-tail>` gracefully falls back to a default tail livery graphic rather than showing a broken icon.
+
+- **No `tail` attribute** — renders the default tail livery.
+- **Invalid tail code** (e.g., `tail="INVALID"`) — falls back to the default tail livery.
+
+<div class="exampleWrapper">
+  <!-- AURO-GENERATED-CONTENT:START (FILE:src=../apiExamples/fallback.html) -->
+  <!-- AURO-GENERATED-CONTENT:END -->
+</div>
+
+<auro-accordion alignRight>
+  <span slot="trigger">See code</span>
+<!-- AURO-GENERATED-CONTENT:START (CODE:src=../apiExamples/fallback.html) -->
+<!-- AURO-GENERATED-CONTENT:END -->
+</auro-accordion>
+
 ### Variant
 
 Set the `variant` attribute to change the visual style of the tail.
