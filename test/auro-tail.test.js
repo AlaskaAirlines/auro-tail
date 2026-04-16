@@ -1,5 +1,6 @@
 // @ts-nocheck
-import { expect, fixture, html, oneEvent } from "@open-wc/testing";
+import { expect, fixture, html, oneEvent, waitUntil } from "@open-wc/testing";
+import tailDefault from "@alaskaairux/icons/dist/logos/tail-DEFAULT_es6.js";
 /* eslint-env mocha */
 /* global describe, it */
 /** @typedef {import('../src/auro-tail.js').AuroTail} AuroTail */
@@ -135,7 +136,6 @@ describe("auro-tail", () => {
     }
   });
 
-
   it("updates carrierType after tail change inside same instance", async () => {
     const el = await fixture(html`<auro-tail tail="HA"></auro-tail>`);
     expect(el.dataset.carrierType).to.equal("aag");
@@ -218,5 +218,23 @@ describe("auro-tail", () => {
 
     expect(el.shadowRoot.querySelector(".container")).to.exist;
     expect(el.tail).to.equal("AS");
+  });
+
+  it("renders default tail livery when no tail attribute is provided", async () => {
+    const el = await fixture(html`<auro-tail></auro-tail>`);
+    await el.updateComplete;
+    const icon = el.shadowRoot.querySelector(el.iconTag._$litStatic$);
+    await waitUntil(() => icon.svg, "Icon did not render a fallback SVG");
+    const expected = new DOMParser().parseFromString(tailDefault.svg, "text/html").body.querySelector("svg");
+    expect(icon.svg.isEqualNode(expected)).to.be.true;
+  });
+
+  it("renders the default tail livery when an invalid tail code is provided", async () => {
+    const el = await fixture(html`<auro-tail tail="INVALID"></auro-tail>`);
+    await el.updateComplete;
+    const icon = el.shadowRoot.querySelector(el.iconTag._$litStatic$);
+    await waitUntil(() => icon.svg, "Icon did not render a fallback SVG");
+    const expected = new DOMParser().parseFromString(tailDefault.svg, "text/html").body.querySelector("svg");
+    expect(icon.svg.isEqualNode(expected)).to.be.true;
   });
 });
