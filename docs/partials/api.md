@@ -38,14 +38,14 @@ Display predefined badges such as OneWorld Alliance using the `badge` attribute.
 <!-- AURO-GENERATED-CONTENT:END -->
 </auro-accordion>
 
-## Href
+### Href
 
 Make tails clickable by adding an `href` attribute. This displays a clickable link below the tail using the `<auro-hyperlink>` component.
 
-### Supported sizes:
+#### Supported sizes:
 - `md`, `lg`, `xl`, `2xl`
 
-### Customizing the label:
+#### Customizing the label:
 - Use the `display` slot to provide custom link text
 - If no `slot` is provided, a default label is inserted automatically
 
@@ -98,8 +98,6 @@ Set the `tail` attribute to insert a tail graphic from the `<auro-icon>` reposit
 
 Tail codes from `<auro-icon>` are expected to be UPPERCASE (e.g., `AS`, not `as`).
 
-The `tail` attribute is required.
-
 <div class="exampleWrapper">
   <!-- AURO-GENERATED-CONTENT:START (FILE:src=../apiExamples/tail.html) -->
   <!-- AURO-GENERATED-CONTENT:END -->
@@ -111,7 +109,7 @@ The `tail` attribute is required.
 <!-- AURO-GENERATED-CONTENT:END -->
 </auro-accordion>
 
-### Fallback
+#### Fallback
 
 When the `tail` attribute is omitted or an unrecognized tail code is provided, `<auro-tail>` gracefully falls back to a default tail livery graphic rather than showing a broken icon.
 
