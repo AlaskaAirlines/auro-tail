@@ -196,8 +196,6 @@ Set the `tail` attribute to insert a tail graphic from the `<auro-icon>` reposit
 
 Tail codes from `<auro-icon>` are expected to be UPPERCASE (e.g., `AS`, not `as`).
 
-The `tail` attribute is required.
-
 <div class="exampleWrapper">
   <!-- AURO-GENERATED-CONTENT:START (FILE:src=../apiExamples/tail.html) -->
   <!-- The below content is automatically added from ../apiExamples/tail.html -->
