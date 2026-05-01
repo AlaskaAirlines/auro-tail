@@ -1,5 +1,5 @@
 // @ts-nocheck
-import { expect, fixture, html, oneEvent, waitUntil } from "@open-wc/testing";
+import { expect, fixture, html, waitUntil } from "@open-wc/testing";
 import tailDefault from "@alaskaairux/icons/dist/logos/tail-DEFAULT_es6.js";
 /* eslint-env mocha */
 /* global describe, it */
