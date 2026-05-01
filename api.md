@@ -12,7 +12,7 @@ The `auro-tail` custom element displays Alaska, Hawaiian, and partner airline ta
 | badge      | badge      |           | string                                        |         | Sets the badge type to display (e.g., `oneworld`).                                        |
 | href       | href       |           | string                                        |         | Sets the href for the tail.                                                               |
 | size       | size       |           | `xs` \| `sm` \| `md` \| `lg` \| `xl` \| `2xl` | `lg`    | Sets the size of the tail.                                                                |
-| tail       | tail       |           | string                                        | `AS`    | Sets the airline tail based on the tail codes used in auro-icon (e.g., `AS`, `HA`, `PR`). |
+| tail       | tail       |           | string                                        |         | Sets the airline tail based on the tail codes used in auro-icon (e.g., `AS`, `HA`, `PR`). |
 | variant    | variant    |           | `outline`                                     |         | Sets the visual variant of the tail.                                                      |
 
 ### Methods
@@ -92,16 +92,16 @@ Display predefined badges such as OneWorld Alliance using the `badge` attribute.
 <!-- AURO-GENERATED-CONTENT:END -->
 </auro-accordion>
 
-## Href
+### Href
 
 Make tails clickable by adding an `href` attribute. This displays a clickable link below the tail using the `<auro-hyperlink>` component.
 
-### Supported sizes:
+#### Supported sizes:
 - `md`, `lg`, `xl`, `2xl`
 
-### Customizing the label:
-- Use the `display` slot to provide custom link text
-- If no `slot` is provided, a default label is inserted automatically
+#### Customizing the label:
+- Use the default slot (no `slot` attribute) to provide custom link text
+- If no slotted content is provided, a default label is inserted automatically
 
 ```html
 <auro-tail tail="HA" size="md" href="https://hawaiianairlines.com/">
@@ -196,8 +196,6 @@ Set the `tail` attribute to insert a tail graphic from the `<auro-icon>` reposit
 
 Tail codes from `<auro-icon>` are expected to be UPPERCASE (e.g., `AS`, not `as`).
 
-The `tail` attribute is required.
-
 <div class="exampleWrapper">
   <!-- AURO-GENERATED-CONTENT:START (FILE:src=../apiExamples/tail.html) -->
   <!-- The below content is automatically added from ../apiExamples/tail.html -->
@@ -215,6 +213,36 @@ The `tail` attribute is required.
 <auro-tail tail="AS"></auro-tail>
 <auro-tail tail="HA"></auro-tail>
 <auro-tail tail="PR"></auro-tail>
+```
+<!-- AURO-GENERATED-CONTENT:END -->
+</auro-accordion>
+
+#### Fallback
+
+When the `tail` attribute is omitted or an unrecognized tail code is provided, `<auro-tail>` gracefully falls back to a default tail livery graphic rather than showing a broken icon.
+
+- **No `tail` attribute** — renders the default tail livery.
+- **Invalid tail code** (e.g., `tail="INVALID"`) — falls back to the default tail livery.
+
+<div class="exampleWrapper">
+  <!-- AURO-GENERATED-CONTENT:START (FILE:src=../apiExamples/fallback.html) -->
+  <!-- The below content is automatically added from ../apiExamples/fallback.html -->
+  <!-- No tail attribute: renders the default tail livery -->
+  <auro-tail></auro-tail>
+  <!-- Invalid tail code: falls back to the default tail livery -->
+  <auro-tail tail="INVALID"></auro-tail>
+  <!-- AURO-GENERATED-CONTENT:END -->
+</div>
+<auro-accordion alignRight>
+  <span slot="trigger">See code</span>
+<!-- AURO-GENERATED-CONTENT:START (CODE:src=../apiExamples/fallback.html) -->
+<!-- The below code snippet is automatically added from ../apiExamples/fallback.html -->
+
+```html
+<!-- No tail attribute: renders the default tail livery -->
+<auro-tail></auro-tail>
+<!-- Invalid tail code: falls back to the default tail livery -->
+<auro-tail tail="INVALID"></auro-tail>
 ```
 <!-- AURO-GENERATED-CONTENT:END -->
 </auro-accordion>
