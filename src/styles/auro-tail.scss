@@ -21,6 +21,11 @@
   min-height: var(--ds-auro-tail-container-w);
 }
 
+.tail > .tail-hyperlink::part(link) {
+  flex-direction: column;
+  align-items: center;
+}
+
 .tail > .tail-hyperlink .label {
   display: block;
   margin-top: var(--ds-auro-tail-href-label-gap);
