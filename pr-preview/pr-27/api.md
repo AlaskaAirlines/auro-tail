@@ -223,15 +223,15 @@ The `tail` attribute is required.
 
 When the `tail` attribute is omitted or an unrecognized tail code is provided, `<auro-tail>` gracefully falls back to a default tail livery graphic rather than showing a broken icon.
 
-- **No `tail` attribute** — the underlying `<auro-icon>` receives no `name` and renders the default tail livery.
-- **Invalid tail code** (e.g., `tail="INVALID"`) — the icon cannot resolve the requested graphic and falls back to the default tail livery via the `tailFallback` behavior built into `<auro-icon>`.
+- **No `tail` attribute** — renders the default tail livery.
+- **Invalid tail code** (e.g., `tail="INVALID"`) — falls back to the default tail livery.
 
 <div class="exampleWrapper">
   <!-- AURO-GENERATED-CONTENT:START (FILE:src=../apiExamples/fallback.html) -->
   <!-- The below content is automatically added from ../apiExamples/fallback.html -->
-  <!-- No tail attribute: the icon has no name and tailFallback renders the default tail livery -->
+  <!-- No tail attribute: renders the default tail livery -->
   <auro-tail></auro-tail>
-  <!-- Invalid tail code: the icon cannot find "tail-INVALID" and tailFallback renders the default tail livery -->
+  <!-- Invalid tail code: falls back to the default tail livery -->
   <auro-tail tail="INVALID"></auro-tail>
   <!-- AURO-GENERATED-CONTENT:END -->
 </div>
@@ -241,9 +241,9 @@ When the `tail` attribute is omitted or an unrecognized tail code is provided, `
 <!-- The below code snippet is automatically added from ../apiExamples/fallback.html -->
 
 ```html
-<!-- No tail attribute: the icon has no name and tailFallback renders the default tail livery -->
+<!-- No tail attribute: renders the default tail livery -->
 <auro-tail></auro-tail>
-<!-- Invalid tail code: the icon cannot find "tail-INVALID" and tailFallback renders the default tail livery -->
+<!-- Invalid tail code: falls back to the default tail livery -->
 <auro-tail tail="INVALID"></auro-tail>
 ```
 <!-- AURO-GENERATED-CONTENT:END -->
