@@ -46,8 +46,8 @@ Make tails clickable by adding an `href` attribute. This displays a clickable li
 - `md`, `lg`, `xl`, `2xl`
 
 #### Customizing the label:
-- Use the `display` slot to provide custom link text
-- If no `slot` is provided, a default label is inserted automatically
+- Use the default slot (no `slot` attribute) to provide custom link text
+- If no slotted content is provided, a default label is inserted automatically
 
 ```html
 <auro-tail tail="HA" size="md" href="https://hawaiianairlines.com/">
