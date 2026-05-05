@@ -24,12 +24,13 @@
     "lit": "^3.3.2"
   },
   "devDependencies": {
-    "@aurodesignsystem/auro-cli": "^3.5.0",
+    "@alaskaairux/icons": "^5.23.0",
+    "@aurodesignsystem/auro-cli": "^3.6.0",
     "@aurodesignsystem/auro-config": "^1.3.1",
-    "@aurodesignsystem/auro-hyperlink": "^8.0.0",
-    "@aurodesignsystem/auro-icon": "^9.1.1",
-    "@aurodesignsystem/auro-library": "^5.5.4",
-    "@aurodesignsystem/design-tokens": "^8.7.0",
+    "@aurodesignsystem/auro-hyperlink": "^8.0.2",
+    "@aurodesignsystem/auro-icon": "^9.2.0",
+    "@aurodesignsystem/auro-library": "^5.11.2",
+    "@aurodesignsystem/design-tokens": "^8.16.0",
     "@aurodesignsystem/webcorestylesheets": "10.1.4",
     "husky": "^9.1.7"
   },

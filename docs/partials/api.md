@@ -38,16 +38,16 @@ Display predefined badges such as OneWorld Alliance using the `badge` attribute.
 <!-- AURO-GENERATED-CONTENT:END -->
 </auro-accordion>
 
-## Href
+### Href
 
 Make tails clickable by adding an `href` attribute. This displays a clickable link below the tail using the `<auro-hyperlink>` component.
 
-### Supported sizes:
+#### Supported sizes:
 - `md`, `lg`, `xl`, `2xl`
 
-### Customizing the label:
-- Use the `display` slot to provide custom link text
-- If no `slot` is provided, a default label is inserted automatically
+#### Customizing the label:
+- Use the default slot (no `slot` attribute) to provide custom link text
+- If no slotted content is provided, a default label is inserted automatically
 
 ```html
 <auro-tail tail="HA" size="md" href="https://hawaiianairlines.com/">
@@ -98,8 +98,6 @@ Set the `tail` attribute to insert a tail graphic from the `<auro-icon>` reposit
 
 Tail codes from `<auro-icon>` are expected to be UPPERCASE (e.g., `AS`, not `as`).
 
-The `tail` attribute is required.
-
 <div class="exampleWrapper">
   <!-- AURO-GENERATED-CONTENT:START (FILE:src=../apiExamples/tail.html) -->
   <!-- AURO-GENERATED-CONTENT:END -->
@@ -108,6 +106,24 @@ The `tail` attribute is required.
 <auro-accordion alignRight>
   <span slot="trigger">See code</span>
 <!-- AURO-GENERATED-CONTENT:START (CODE:src=../apiExamples/tail.html) -->
+<!-- AURO-GENERATED-CONTENT:END -->
+</auro-accordion>
+
+#### Fallback
+
+When the `tail` attribute is omitted or an unrecognized tail code is provided, `<auro-tail>` gracefully falls back to a default tail livery graphic rather than showing a broken icon.
+
+- **No `tail` attribute** — renders the default tail livery.
+- **Invalid tail code** (e.g., `tail="INVALID"`) — falls back to the default tail livery.
+
+<div class="exampleWrapper">
+  <!-- AURO-GENERATED-CONTENT:START (FILE:src=../apiExamples/fallback.html) -->
+  <!-- AURO-GENERATED-CONTENT:END -->
+</div>
+
+<auro-accordion alignRight>
+  <span slot="trigger">See code</span>
+<!-- AURO-GENERATED-CONTENT:START (CODE:src=../apiExamples/fallback.html) -->
 <!-- AURO-GENERATED-CONTENT:END -->
 </auro-accordion>
 
