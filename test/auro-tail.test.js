@@ -220,20 +220,24 @@ describe("auro-tail", () => {
     expect(el.tail).to.equal("AS");
   });
 
-  it("renders default tail livery when no tail attribute is provided", async () => {
+  it("renders default tail livery when no tail attribute is provided", async function () {
+    // Icon SVGs load from the CDN, so allow more than the default 2s
+    this.timeout(10000);
     const el = await fixture(html`<auro-tail></auro-tail>`);
     await el.updateComplete;
     const icon = el.shadowRoot.querySelector(el.iconTag._$litStatic$);
-    await waitUntil(() => icon.svg, "Icon did not render a fallback SVG");
+    await waitUntil(() => icon.svg, "Icon did not render a fallback SVG", { timeout: 8000 });
     const expected = new DOMParser().parseFromString(tailDefault.svg, "text/html").body.querySelector("svg");
     expect(icon.svg.isEqualNode(expected)).to.be.true;
   });
 
-  it("renders the default tail livery when an invalid tail code is provided", async () => {
+  it("renders the default tail livery when an invalid tail code is provided", async function () {
+    // Icon SVGs load from the CDN, so allow more than the default 2s
+    this.timeout(10000);
     const el = await fixture(html`<auro-tail tail="INVALID"></auro-tail>`);
     await el.updateComplete;
     const icon = el.shadowRoot.querySelector(el.iconTag._$litStatic$);
-    await waitUntil(() => icon.svg, "Icon did not render a fallback SVG");
+    await waitUntil(() => icon.svg, "Icon did not render a fallback SVG", { timeout: 8000 });
     const expected = new DOMParser().parseFromString(tailDefault.svg, "text/html").body.querySelector("svg");
     expect(icon.svg.isEqualNode(expected)).to.be.true;
   });
