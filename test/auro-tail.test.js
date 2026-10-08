@@ -12,6 +12,11 @@ if (!customElements.get("test-tail")) {
   AuroTail.register("test-tail");
 }
 
+// Icon SVGs load from the CDN, so allow more than mocha's default 2s.
+// The wait stays below the test timeout so a slow load fails with the waitUntil message.
+const ICON_LOAD_TIMEOUT = 8000;
+const ICON_TEST_TIMEOUT = ICON_LOAD_TIMEOUT + 2000;
+
 describe("auro-tail", () => {
   it("defines the custom element", () => {
     expect(!!customElements.get("auro-tail")).to.be.true;
@@ -221,23 +226,21 @@ describe("auro-tail", () => {
   });
 
   it("renders default tail livery when no tail attribute is provided", async function () {
-    // Icon SVGs load from the CDN, so allow more than the default 2s
-    this.timeout(10000);
+    this.timeout(ICON_TEST_TIMEOUT);
     const el = await fixture(html`<auro-tail></auro-tail>`);
     await el.updateComplete;
     const icon = el.shadowRoot.querySelector(el.iconTag._$litStatic$);
-    await waitUntil(() => icon.svg, "Icon did not render a fallback SVG", { timeout: 8000 });
+    await waitUntil(() => icon.svg, "Icon did not render a fallback SVG", { timeout: ICON_LOAD_TIMEOUT });
     const expected = new DOMParser().parseFromString(tailDefault.svg, "text/html").body.querySelector("svg");
     expect(icon.svg.isEqualNode(expected)).to.be.true;
   });
 
   it("renders the default tail livery when an invalid tail code is provided", async function () {
-    // Icon SVGs load from the CDN, so allow more than the default 2s
-    this.timeout(10000);
+    this.timeout(ICON_TEST_TIMEOUT);
     const el = await fixture(html`<auro-tail tail="INVALID"></auro-tail>`);
     await el.updateComplete;
     const icon = el.shadowRoot.querySelector(el.iconTag._$litStatic$);
-    await waitUntil(() => icon.svg, "Icon did not render a fallback SVG", { timeout: 8000 });
+    await waitUntil(() => icon.svg, "Icon did not render a fallback SVG", { timeout: ICON_LOAD_TIMEOUT });
     const expected = new DOMParser().parseFromString(tailDefault.svg, "text/html").body.querySelector("svg");
     expect(icon.svg.isEqualNode(expected)).to.be.true;
   });
