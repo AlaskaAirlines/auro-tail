@@ -1,7 +1,6 @@
 ```js
 // Import the class only
 import { AuroTail } from '@aurodesignsystem/auro-tail/class';
-
 // Register with a custom name if desired
 AuroTail.register('custom-tail');
 ```
