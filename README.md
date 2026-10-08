@@ -57,9 +57,7 @@ The `<auro-tail>` custom element displays Alaska, Hawaiian, and partner airline 
 [![License](https://img.shields.io/npm/l/@aurodesignsystem/auro-tail?color=blue&style=for-the-badge)](https://www.apache.org/licenses/LICENSE-2.0)
 ![ESM supported](https://img.shields.io/badge/ESM-compatible-FFE900?style=for-the-badge)
 
-```shell
-$ npm i @aurodesignsystem/auro-tail
-```
+<pre class="language-shell"><code class="language-shell">$ npm i @aurodesignsystem/auro-tail</code></pre>
 
 <!-- AURO-GENERATED-CONTENT:END -->
 
@@ -71,9 +69,7 @@ Defining the dependency within each project that is using the `<auro-tail>` comp
 <!-- AURO-GENERATED-CONTENT:END -->
 <!-- AURO-GENERATED-CONTENT:START (REMOTE:url=https://raw.githubusercontent.com/AlaskaAirlines/auro-templates/main/templates/default/partials/usage/componentImport.md) -->
 
-```js
-import "@aurodesignsystem/auro-tail";
-```
+<pre class="language-js"><code class="language-js">import "@aurodesignsystem/auro-tail";</code></pre>
 
 <!-- AURO-GENERATED-CONTENT:END -->
 
@@ -82,9 +78,7 @@ import "@aurodesignsystem/auro-tail";
 <!-- AURO-GENERATED-CONTENT:START (REMOTE:url=https://raw.githubusercontent.com/AlaskaAirlines/auro-templates/main/templates/default/partials/usage/bundleInstallDescription.md) -->
 In cases where the project is not able to process JS assets, there are pre-processed assets available for use. Legacy browsers such as IE11 are no longer supported.
 
-```html
-<script type="module" src="https://cdn.jsdelivr.net/npm/@aurodesignsystem/auro-tail@latest/+esm"></script>
-```
+<pre class="language-html"><code class="language-html">&lt;script type="module" src="https://cdn.jsdelivr.net/npm/@aurodesignsystem/auro-tail@latest/+esm"&gt;&lt;/script&gt;</code></pre>
 
 <!-- AURO-GENERATED-CONTENT:END -->
 
@@ -93,9 +87,7 @@ In cases where the project is not able to process JS assets, there are pre-proce
 <!-- AURO-GENERATED-CONTENT:START (CODE:src=./apiExamples/basic.html) -->
 <!-- The below code snippet is automatically added from ./apiExamples/basic.html -->
 
-```html
-<auro-tail tail="AS"></auro-tail>
-```
+<pre class="language-html"><code class="language-html">&lt;auro-tail tail="AS"&gt;&lt;/auro-tail&gt;</code></pre>
 <!-- AURO-GENERATED-CONTENT:END -->
 
 ## Custom Component Registration for Version Management
@@ -112,37 +104,32 @@ You can do this by importing only the component class and using the `register(na
 <!-- AURO-GENERATED-CONTENT:START (FILE:src=./docs/partials/customRegistration.md) -->
 <!-- The below content is automatically added from ./docs/partials/customRegistration.md -->
 
-```js
-// Import the class only
+<pre class="language-js"><code class="language-js">// Import the class only
 import { AuroTail } from '@aurodesignsystem/auro-tail/class';
-
 // Register with a custom name if desired
-AuroTail.register('custom-tail');
-```
+AuroTail.register('custom-tail');</code></pre>
 
 This will create a new custom element `<custom-tail>` that behaves exactly like `<auro-tail>`, allowing both to coexist on the same page without interfering with each other.
 <!-- AURO-GENERATED-CONTENT:END -->
 <div class="exampleWrapper exampleWrapper--flex">
-  <!-- AURO-GENERATED-CONTENT:START (FILE:src=./apiExamples/custom.html) -->
-  <!-- The below content is automatically added from ./apiExamples/custom.html -->
-  <custom-tail tail="AS" size="2xl"></custom-tail>
-  <custom-tail-group size="lg">
-    <custom-tail tail="HA"></custom-tail>
-    <custom-tail tail="AA"></custom-tail>
-  </custom-tail-group>
-  <!-- AURO-GENERATED-CONTENT:END -->
+<!-- AURO-GENERATED-CONTENT:START (FILE:src=./apiExamples/custom.html) -->
+<!-- The below content is automatically added from ./apiExamples/custom.html -->
+<custom-tail tail="AS" size="2xl"></custom-tail>
+<custom-tail-group size="lg">
+<custom-tail tail="HA"></custom-tail>
+<custom-tail tail="AA"></custom-tail>
+</custom-tail-group>
+<!-- AURO-GENERATED-CONTENT:END -->
 </div>
 <auro-accordion alignRight>
-  <span slot="trigger">See code</span>
+<span slot="trigger">See code</span>
 <!-- AURO-GENERATED-CONTENT:START (CODE:src=./apiExamples/custom.html) -->
 <!-- The below code snippet is automatically added from ./apiExamples/custom.html -->
 
-```html
-<custom-tail tail="AS" size="2xl"></custom-tail>
-<custom-tail-group size="lg">
-  <custom-tail tail="HA"></custom-tail>
-  <custom-tail tail="AA"></custom-tail>
-</custom-tail-group>
-```
+<pre class="language-html"><code class="language-html">&lt;custom-tail tail="AS" size="2xl"&gt;&lt;/custom-tail&gt;
+&lt;custom-tail-group size="lg"&gt;
+  &lt;custom-tail tail="HA"&gt;&lt;/custom-tail&gt;
+  &lt;custom-tail tail="AA"&gt;&lt;/custom-tail&gt;
+&lt;/custom-tail-group&gt;</code></pre>
 <!-- AURO-GENERATED-CONTENT:END -->
 </auro-accordion>
