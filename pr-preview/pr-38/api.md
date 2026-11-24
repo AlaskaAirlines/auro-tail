@@ -34,9 +34,9 @@ Displays an Alaska, Hawaiian, or partner airline tail graphic, so every airline 
 
 ### Slots
 
-| Name      | Relevant when | Description                                                                |
-| --------- | ------------- | -------------------------------------------------------------------------- |
-| (default) | `href`        | Text label shown below the tail when `href` is set. Defaults to "Airline". |
+| Name      | Description                                                                                                                                               |
+| --------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| (default) | Text label shown below the tail when `href` is set. Defaults to "Airline". Shows only at sizes `md` through `2xl`, and never inside an `auro-tail-group`. |
 
 ### CSS shadow parts
 
@@ -286,8 +286,8 @@ Set the `variant` attribute to change the visual style of the tail.
 
 #### Available variants:
 - `outline`: Adds an outline around the tail graphic
-  - Outlines apply only to partner (OA) tails
-    - AAG tails (`AS` and `HA`) never feature outlines
+  - Outlines apply only to partner airline tails
+    - Alaska and Hawaiian tails (`AS` and `HA`) never show an outline
   - Width and color are predefined and not customizable
 
 <div class="exampleWrapper">
@@ -425,7 +425,7 @@ Border styling availability varies by layout type (see sections below).
 
 ### Horizontal
 
-- Border width (`--ds-auro-tail-border-width`) is not customizable.
+- Border width (`--ds-auro-tail-border-width`) isn't customizable.
 
 <div class="exampleWrapper">
 <!-- AURO-GENERATED-CONTENT:START (FILE:src=../apiExamples/group-horizontal.html) -->
