@@ -104,12 +104,13 @@ To do this, import only the component class and call the `register(name)` method
 <!-- AURO-GENERATED-CONTENT:START (FILE:src=./docs/partials/customRegistration.md) -->
 <!-- The below content is automatically added from ./docs/partials/customRegistration.md -->
 
-<pre class="language-js"><code class="language-js">// Import the class only
-import { AuroTail } from '@aurodesignsystem/auro-tail/class';
-// Register with a custom name if desired
-AuroTail.register('custom-tail');</code></pre>
+<pre class="language-js"><code class="language-js">// Import the classes only
+import { AuroTail, AuroTailGroup } from '@aurodesignsystem/auro-tail/class';
+// Register with custom names if desired
+AuroTail.register('custom-tail');
+AuroTailGroup.register('custom-tail-group');</code></pre>
 
-This registers a new custom element `<custom-tail>` that behaves exactly like `<auro-tail>`, so both can coexist on the same page without interfering with each other.
+This registers new custom elements `<custom-tail>` and `<custom-tail-group>` that behave exactly like `<auro-tail>` and `<auro-tail-group>`, so both sets can coexist on the same page without interfering with each other.
 <!-- AURO-GENERATED-CONTENT:END -->
 <div class="exampleWrapper exampleWrapper--flex">
 <!-- AURO-GENERATED-CONTENT:START (FILE:src=./apiExamples/custom.html) -->
