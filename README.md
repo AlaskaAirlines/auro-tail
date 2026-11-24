@@ -12,23 +12,23 @@ The following sections are editable by making changes to the following files:
 | SECTION                | DESCRIPTION                                       | FILE LOCATION                       |
 |------------------------|---------------------------------------------------|-------------------------------------|
 | Description            | Description of the component                      | `./docs/partials/description.md`    |
-| Use Cases              | Examples for when to use this component           | `./docs/partials/useCases.md`       |
-| Additional Information | For use to add any component specific information | `./docs/partials/readmeAddlInfo.md` |
-| Component Example Code | HTML sample code of the components use            | `./apiExamples/basic.html`          |
+| Use cases              | Examples for when to use this component           | `./docs/partials/useCases.md`       |
+| Additional information | For use to add any component specific information | `./docs/partials/readmeAddlInfo.md` |
+| Component example code | HTML sample code of the components use            | `./apiExamples/basic.html`          |
 -->
 
 # Tail
 
 <!-- AURO-GENERATED-CONTENT:START (FILE:src=./docs/partials/description.md) -->
 <!-- The below content is automatically added from ./docs/partials/description.md -->
-The `<auro-tail>` custom element displays Alaska, Hawaiian, and partner airline tail graphics for consistent visual representation across Alaska applications.
+Displays Alaska, Hawaiian, and partner airline tail graphics for consistent visual representation across Alaska applications.
 <!-- AURO-GENERATED-CONTENT:END -->
 <!-- AURO-GENERATED-CONTENT:START (FILE:src=./docs/partials/readmeAddlInfo.md) -->
 <!-- The below content is automatically added from ./docs/partials/readmeAddlInfo.md -->
 <!-- AURO-GENERATED-CONTENT This file is to be used for any additional content that should be included in the README.md which is specific to this component. -->
 <!-- AURO-GENERATED-CONTENT:END -->
 
-## Use Cases
+## Use cases
 
 <!-- AURO-GENERATED-CONTENT:START (FILE:src=./docs/partials/useCases.md) -->
 <!-- The below content is automatically added from ./docs/partials/useCases.md -->
@@ -41,12 +41,12 @@ The `<auro-tail>` custom element displays Alaska, Hawaiian, and partner airline 
 
 ### Features
 
-- **AAG & Partner Airlines**: Logos provided by the `<auro-icon>` repository
-- **Flexible Sizing**: Offers a flexible size scale to accommodate various design requirements
-- **Group Layout**: Display multiple tails together in paired layouts
-- **Badge Support**: Display badges like OneWorld Alliance
-- **Custom Borders**: Add colored borders with customizable widths
-- **Clickable Links**: Make tails clickable with `<auro-hyperlink>`
+- **AAG and partner airlines**: Logos provided by the `<auro-icon>` repository
+- **Flexible sizing**: Offers a flexible size scale to accommodate various design requirements
+- **Group layout**: Display multiple tails together in paired layouts
+- **Badge support**: Display badges like OneWorld Alliance
+- **Custom borders**: Add colored borders with customizable widths
+- **Clickable links**: Make tails clickable with `<auro-hyperlink>`
 <!-- AURO-GENERATED-CONTENT:END -->
 
 ## Install
@@ -61,10 +61,10 @@ The `<auro-tail>` custom element displays Alaska, Hawaiian, and partner airline 
 
 <!-- AURO-GENERATED-CONTENT:END -->
 
-### Define Dependency in Project
+### Define dependency in project
 
 <!-- AURO-GENERATED-CONTENT:START (REMOTE:url=https://raw.githubusercontent.com/AlaskaAirlines/auro-templates/main/templates/default/partials/usage/componentImportDescription.md) -->
-Defining the dependency within each project that is using the `<auro-tail>` component.
+Import the component in each project that uses `<auro-tail>`.
 
 <!-- AURO-GENERATED-CONTENT:END -->
 <!-- AURO-GENERATED-CONTENT:START (REMOTE:url=https://raw.githubusercontent.com/AlaskaAirlines/auro-templates/main/templates/default/partials/usage/componentImport.md) -->
@@ -76,13 +76,13 @@ Defining the dependency within each project that is using the `<auro-tail>` comp
 ### Use CDN
 
 <!-- AURO-GENERATED-CONTENT:START (REMOTE:url=https://raw.githubusercontent.com/AlaskaAirlines/auro-templates/main/templates/default/partials/usage/bundleInstallDescription.md) -->
-In cases where the project is not able to process JS assets, there are pre-processed assets available for use. Legacy browsers such as IE11 are no longer supported.
+If your project can't process JS assets, use the pre-processed assets. Legacy browsers, such as IE11, aren't supported.
 
 <pre class="language-html"><code class="language-html">&lt;script type="module" src="https://cdn.jsdelivr.net/npm/@aurodesignsystem/auro-tail@latest/+esm"&gt;&lt;/script&gt;</code></pre>
 
 <!-- AURO-GENERATED-CONTENT:END -->
 
-## Basic Example
+## Basic example
 
 <!-- AURO-GENERATED-CONTENT:START (CODE:src=./apiExamples/basic.html) -->
 <!-- The below code snippet is automatically added from ./apiExamples/basic.html -->
@@ -90,16 +90,16 @@ In cases where the project is not able to process JS assets, there are pre-proce
 <pre class="language-html"><code class="language-html">&lt;auro-tail tail="AS"&gt;&lt;/auro-tail&gt;</code></pre>
 <!-- AURO-GENERATED-CONTENT:END -->
 
-## Custom Component Registration for Version Management
+## Custom component registration for version management
 
-There are two key parts to every Auro component: the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes">class</a> and the custom element definition.
+Every Auro component has two key parts: the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes">class</a> and the custom element definition.
 The class defines the component’s behavior, while the custom element registers it under a specific name so it can be used in HTML.
 
-When you install the component as described on the `Install` page, the class is imported automatically, and the component is registered globally for you.
+Installing the component as described in the Install section imports the class and registers the component globally for you.
 
-However, if you need to load multiple versions of the same component on a single page (for example, when two projects depend on different versions), you can manually register the class under a custom element name to avoid conflicts.
+However, if you need to load multiple versions of the same component on a single page (for example, when two projects depend on different versions), register the class manually under a custom element name to avoid conflicts.
 
-You can do this by importing only the component class and using the `register(name)` method with a unique name:
+To do this, import only the component class and call the `register(name)` method with a unique name:
 
 <!-- AURO-GENERATED-CONTENT:START (FILE:src=./docs/partials/customRegistration.md) -->
 <!-- The below content is automatically added from ./docs/partials/customRegistration.md -->
@@ -109,7 +109,7 @@ import { AuroTail } from '@aurodesignsystem/auro-tail/class';
 // Register with a custom name if desired
 AuroTail.register('custom-tail');</code></pre>
 
-This will create a new custom element `<custom-tail>` that behaves exactly like `<auro-tail>`, allowing both to coexist on the same page without interfering with each other.
+This registers a new custom element `<custom-tail>` that behaves exactly like `<auro-tail>`, so both can coexist on the same page without interfering with each other.
 <!-- AURO-GENERATED-CONTENT:END -->
 <div class="exampleWrapper exampleWrapper--flex">
 <!-- AURO-GENERATED-CONTENT:START (FILE:src=./apiExamples/custom.html) -->
@@ -127,7 +127,7 @@ This will create a new custom element `<custom-tail>` that behaves exactly like 
 <!-- The below code snippet is automatically added from ./apiExamples/custom.html -->
 
 <pre class="language-html"><code class="language-html">&lt;custom-tail tail="AS" size="2xl"&gt;&lt;/custom-tail&gt;
-&lt;custom-tail-group size="lg"&gt;
+&#10;&lt;custom-tail-group size="lg"&gt;
   &lt;custom-tail tail="HA"&gt;&lt;/custom-tail&gt;
   &lt;custom-tail tail="AA"&gt;&lt;/custom-tail&gt;
 &lt;/custom-tail-group&gt;</code></pre>

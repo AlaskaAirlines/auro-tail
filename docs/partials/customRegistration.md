@@ -5,4 +5,4 @@ import { AuroTail } from '@aurodesignsystem/auro-tail/class';
 AuroTail.register('custom-tail');
 ```
 
-This will create a new custom element `<custom-tail>` that behaves exactly like `<auro-tail>`, allowing both to coexist on the same page without interfering with each other.
+This registers a new custom element `<custom-tail>` that behaves exactly like `<auro-tail>`, so both can coexist on the same page without interfering with each other.

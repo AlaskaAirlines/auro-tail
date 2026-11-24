@@ -16,7 +16,7 @@
  
 ## Example(s)
 
-### Overview of Tails
+### Overview of tails
 
 This example shows a variety of `auro-tail` usages.
 

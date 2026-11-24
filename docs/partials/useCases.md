@@ -7,9 +7,9 @@
 
 ### Features
 
-- **AAG & Partner Airlines**: Logos provided by the `<auro-icon>` repository
-- **Flexible Sizing**: Offers a flexible size scale to accommodate various design requirements
-- **Group Layout**: Display multiple tails together in paired layouts
-- **Badge Support**: Display badges like OneWorld Alliance
-- **Custom Borders**: Add colored borders with customizable widths
-- **Clickable Links**: Make tails clickable with `<auro-hyperlink>`
+- **AAG and partner airlines**: Logos provided by the `<auro-icon>` repository
+- **Flexible sizing**: Offers a flexible size scale to accommodate various design requirements
+- **Group layout**: Display multiple tails together in paired layouts
+- **Badge support**: Display badges like OneWorld Alliance
+- **Custom borders**: Add colored borders with customizable widths
+- **Clickable links**: Make tails clickable with `<auro-hyperlink>`
