@@ -34,7 +34,7 @@ import styleCss from './styles/auro-tail.scss';
  * ```
  *
  * @summary An airline tail graphic with sizes, links, badges, and grouped layouts for Alaska, Hawaiian, and partner carriers.
- * @slot - Text label shown below the tail when `href` is set. Defaults to "Airline". {@relevantWhen href}
+ * @slot - Text label shown below the tail when `href` is set. Defaults to "Airline". Shows only at sizes `md` through `2xl`, and never inside an `auro-tail-group`. {@relevantWhen href && size !== 'xs' && size !== 'sm'}
  * @csspart container - The circular element that holds the tail graphic.
  * @cssprop --ds-auro-tail-border-width - Width of the border ring around the tail. Groups in `horizontal` layout set it themselves, and `diagonal` groups remove it.
  * @cssprop --ds-auro-tail-border-color - Color of the border ring around the tail. Set it on an `auro-tail-group` to color the borders of both tails in `horizontal` layout.

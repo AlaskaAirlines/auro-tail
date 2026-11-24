@@ -33,9 +33,9 @@ Displays an Alaska, Hawaiian, or partner airline tail graphic, so every airline 
 
 ### Slots
 
-| Name      | Relevant when | Description                                                                |
-| --------- | ------------- | -------------------------------------------------------------------------- |
-| (default) | `href`        | Text label shown below the tail when `href` is set. Defaults to "Airline". |
+| Name      | Description                                                                                                                                               |
+| --------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| (default) | Text label shown below the tail when `href` is set. Defaults to "Airline". Shows only at sizes `md` through `2xl`, and never inside an `auro-tail-group`. |
 
 ### CSS shadow parts
 
