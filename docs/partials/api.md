@@ -16,7 +16,7 @@
 
 </auro-accordion>
 
-## Auro-Tail Property & Attribute Examples
+## Auro-tail property and attribute examples
 
 ### Badge
 
@@ -25,7 +25,7 @@ Display predefined badges such as OneWorld Alliance using the `badge` attribute.
 #### Supported sizes:
 - `md`, `lg`, `xl`, `2xl`
 
-> `badge` prop is not displayed when in an `<auro-tail-group>`.
+> The `badge` attribute isn't shown inside an `<auro-tail-group>`.
 
 <div class="exampleWrapper">
   <!-- AURO-GENERATED-CONTENT:START (FILE:src=../apiExamples/badges.html) -->
@@ -70,7 +70,7 @@ Make tails clickable by adding an `href` attribute. This displays a clickable li
 
 Control the size of `<auro-tail>` with the `size` attribute.
 
-Certain properties are not available for all `<auto-tail>` sizes. See the table below for details.
+Certain properties aren't available for all `<auro-tail>` sizes. See the table below for details.
 
 | Size | `href` | `badge` |
 |------|-----------------|------------------|
@@ -96,7 +96,7 @@ Certain properties are not available for all `<auto-tail>` sizes. See the table 
        
 Set the `tail` attribute to insert a tail graphic from the `<auro-icon>` repository with the corresponding icon code.
 
-Tail codes from `<auro-icon>` are expected to be UPPERCASE (e.g., `AS`, not `as`).
+Tail codes aren't case sensitive. The examples use uppercase, such as `AS`.
 
 <div class="exampleWrapper">
   <!-- AURO-GENERATED-CONTENT:START (FILE:src=../apiExamples/tail.html) -->
@@ -111,10 +111,10 @@ Tail codes from `<auro-icon>` are expected to be UPPERCASE (e.g., `AS`, not `as`
 
 #### Fallback
 
-When the `tail` attribute is omitted or an unrecognized tail code is provided, `<auro-tail>` gracefully falls back to a default tail livery graphic rather than showing a broken icon.
+When the `tail` attribute is omitted or an unrecognized tail code is provided, `<auro-tail>` falls back to a default tail livery graphic rather than showing a broken icon.
 
-- **No `tail` attribute** — renders the default tail livery.
-- **Invalid tail code** (e.g., `tail="INVALID"`) — falls back to the default tail livery.
+- **No `tail` attribute**: renders the default tail livery.
+- **Invalid tail code** (for example, `tail="INVALID"`): falls back to the default tail livery.
 
 <div class="exampleWrapper">
   <!-- AURO-GENERATED-CONTENT:START (FILE:src=../apiExamples/fallback.html) -->
@@ -132,10 +132,10 @@ When the `tail` attribute is omitted or an unrecognized tail code is provided, `
 Set the `variant` attribute to change the visual style of the tail.
 
 #### Available variants:
-- `outline` - Adds an outline around the tail graphic
-  - Outlines apply only to partner (OA) tails
-    - AAG tails (`AS` & `HA`) never feature outlines
-  - Width & color are predefined and not customizable
+- `outline`: Adds an outline around the tail graphic
+  - Outlines apply only to partner airline tails
+    - Alaska and Hawaiian tails (`AS` and `HA`) never show an outline
+  - Width and color are predefined and not customizable
 
 <div class="exampleWrapper">
   <!-- AURO-GENERATED-CONTENT:START (FILE:src=../apiExamples/variant.html) -->
@@ -148,7 +148,7 @@ Set the `variant` attribute to change the visual style of the tail.
 <!-- AURO-GENERATED-CONTENT:END -->
 </auro-accordion>
 
-## Common Usage Patterns & Functional Examples
+## Common usage patterns and functional examples
 
 ### Borders
 
@@ -157,7 +157,7 @@ Optional border ring around `<auro-tail>`.
 Use CSS custom properties to style borders:
 
 - `--ds-auro-tail-border-width`
-  - Set the border width (e.g., `3px`, `4px`)
+  - Set the border width, such as `3px` or `4px`
 - `--ds-auro-tail-border-color`
   - Set the border color (any valid CSS color value)
 
@@ -180,21 +180,21 @@ Set CSS custom properties directly on the `<auro-tail>` element:
 <!-- AURO-GENERATED-CONTENT:END -->
 </auro-accordion>
 
-## Auro-Tail-Group Property & Attribute Examples
+## Auro-tail-group property and attribute examples
 
 ### Supported sizes:
 - `xs`, `sm`, `md`, `lg`
 
 ### Limitations
-* **Maximum Display Count:** Only 2 tails are supported in any group.
-* **Size Override:** The group's `size` property will override individual `<auro-tail>` `size` properties
-* **Suppressed Features:**
-   * `badge` will not be shown
-   * `href` will not be displayed
+* **Maximum display count:** Only 2 tails are supported in any group.
+* **Size override:** The group's `size` property overrides individual `<auro-tail>` `size` properties.
+* **Suppressed features:**
+   * `badge` isn't shown
+   * `href` isn't displayed
 
 ### Styling tails in a group
 
-CSS custom properties set on the `<auro-tail-group>` element will automatically apply to all child `<auro-tail>` elements:
+CSS custom properties set on the `<auro-tail-group>` element automatically apply to all child `<auro-tail>` elements:
 
 ```html
 <auro-tail-group layout="horizontal" style="--ds-auro-tail-border-color: var(--ds-basic-color-brand-primary)">
@@ -207,7 +207,7 @@ Border styling availability varies by layout type (see sections below).
 
 ### Diagonal
 
-- Border styles (`--ds-auro-tail-border-width` and `--ds-auro-tail-border-color`) are not applicable to diagonal groups and will be ignored.
+- Border styles (`--ds-auro-tail-border-width` and `--ds-auro-tail-border-color`) aren't applicable to diagonal groups and are ignored.
 
 <div class="exampleWrapper">
   <!-- AURO-GENERATED-CONTENT:START (FILE:src=../apiExamples/group-diagonal.html) -->
@@ -222,7 +222,7 @@ Border styling availability varies by layout type (see sections below).
 
 ### Horizontal
 
-- Border width (`--ds-auro-tail-border-width`) is not customizable.
+- Border width (`--ds-auro-tail-border-width`) isn't customizable.
 
 <div class="exampleWrapper">
   <!-- AURO-GENERATED-CONTENT:START (FILE:src=../apiExamples/group-horizontal.html) -->
@@ -250,7 +250,7 @@ Border styling availability varies by layout type (see sections below).
 <!-- AURO-GENERATED-CONTENT:END -->
 </auro-accordion>
 
-## Restyle Component with CSS Variables
+## Restyle with CSS custom properties
 
 The component may be restyled by changing the values of the following token(s).
 
