@@ -9,7 +9,23 @@ import groupStyleCss from './styles/auro-tail-group.scss';
  */
 
 /**
- * The `auro-tail-group` element displays multiple `auro-tail` elements in a grouped layout.
+ * Shows two airline tails together as a pair, either side by side with an overlap or stacked at opposite corners.
+ *
+ * **Key capabilities**
+ * - **Layouts**: Set `layout` to `horizontal` or `diagonal`.
+ * - **Shared size**: Set `size` to size both tails at once.
+ * - **Pairs only**: The group supports two tails.
+ *
+ * **Example**
+ * ```html
+ * <auro-tail-group layout="horizontal">
+ *   <auro-tail tail="AS"></auro-tail>
+ *   <auro-tail tail="HA"></auro-tail>
+ * </auro-tail-group>
+ * ```
+ *
+ * @summary A pair of airline tails in a horizontal or diagonal layout.
+ * @slot - The two `auro-tail` elements to show.
  * @customElement auro-tail-group
  */
 export class AuroTailGroup extends LitElement {
@@ -28,14 +44,14 @@ export class AuroTailGroup extends LitElement {
   static get properties() {
     return {
       /**
-       * Sets the layout direction for the group.
+       * Sets how the two tails sit together. Use `horizontal` (the default) for tails that overlap side by side, or `diagonal` for tails at opposite corners. Borders show only in the `horizontal` layout.
        * @type {'horizontal' | 'diagonal'}
        * @default 'horizontal'
        */
       layout: { type: String, attribute: 'layout', reflect: true },
 
       /**
-       * Sets the size for all child tails in the group.
+       * Sets the size of every `auro-tail` in the group, from `xs` to `lg`. The group's size replaces any `size` set on the tails, and the group shows nothing at other sizes.
        * @type {'xs' | 'sm' | 'md' | 'lg'}
        * @default 'lg'
        */
@@ -44,11 +60,11 @@ export class AuroTailGroup extends LitElement {
   }
 
   /**
-   * This will register this element with the browser.
-   * @param {string} [name="auro-tail-group"] - The name of element that you want to register to.
+   * Registers the element with the browser under a tag name.
+   * @param {string} [name="auro-tail-group"] - The tag name to register the element under.
    *
    * @example
-   * AuroTailGroup.register("custom-tail-group") // this will register this element to <custom-tail-group/>
+   * AuroTailGroup.register("custom-tail-group") // Registers the element as <custom-tail-group>
    *
    */
   static register(name = "auro-tail-group") {
@@ -83,7 +99,7 @@ export class AuroTailGroup extends LitElement {
   }
 
   /**
-   * @param {Map<string, any>} changedProperties - Changed properties
+   * @param {Map<string, any>} changedProperties - The properties that changed.
    */
   updated(changedProperties) {
     super.updated(changedProperties);
@@ -113,7 +129,7 @@ export class AuroTailGroup extends LitElement {
   }
 
   /**
-   * Handle slot changes to update tails.
+   * Handles slot changes by updating the tails.
    * @private
    */
   handleSlotChange() {

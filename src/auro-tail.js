@@ -13,12 +13,31 @@ import styleCss from './styles/auro-tail.scss';
 
 /**
  * @typedef {Object} BadgeConfig
- * @property {Function} icon - Function that returns the badge icon template
- * @property {string} alt - Alt text for the badge
+ * @property {Function} icon - The function that returns the badge icon template.
+ * @property {string} alt - The alt text for the badge.
  */
 
 /**
- * The `auro-tail` custom element displays Alaska, Hawaiian, and partner airline tail graphics for consistent visual representation across Alaska applications.
+ * Displays an Alaska, Hawaiian, or partner airline tail graphic, so every airline looks the same across Alaska applications.
+ *
+ * **Key capabilities**
+ * - **Airline tails**: Set `tail` to a tail code such as `AS`, `HA`, or `PR` to choose the airline.
+ * - **Sizes**: Set `size` from `xs` to `2xl` to fit the layout.
+ * - **Badges**: Set `badge="oneworld"` to add the OneWorld Alliance badge at `md` and larger sizes.
+ * - **Links**: Set `href` to make the tail and its label a link at `md` and larger sizes.
+ * - **Outline**: Set `variant="outline"` to outline partner airline tails.
+ * - **Borders**: Set `--ds-auro-tail-border-width` and `--ds-auro-tail-border-color` to add a border ring.
+ *
+ * **Example**
+ * ```html
+ * <auro-tail tail="AS"></auro-tail>
+ * ```
+ *
+ * @summary An airline tail graphic with sizes, links, badges, and grouped layouts for Alaska, Hawaiian, and partner carriers.
+ * @slot - Text label shown below the tail when `href` is set. Defaults to "Airline". Shows only at sizes `md` through `2xl`, and never inside an `auro-tail-group`. {@relevantWhen href && size !== 'xs' && size !== 'sm'}
+ * @csspart container - The circular element that holds the tail graphic.
+ * @cssprop --ds-auro-tail-border-width - Width of the border ring around the tail. Groups in `horizontal` layout set it themselves, and `diagonal` groups remove it.
+ * @cssprop --ds-auro-tail-border-color - Color of the border ring around the tail. Set it on an `auro-tail-group` to color the borders of both tails in `horizontal` layout.
  * @customElement auro-tail
  */
 export class AuroTail extends LitElement {
@@ -37,29 +56,31 @@ export class AuroTail extends LitElement {
   static get properties() {
     return {
       /**
-       * Sets the badge type to display (e.g., `oneworld`).
+       * Sets the badge to show on the tail, such as `oneworld` for the OneWorld Alliance badge. Shows only at sizes `md` through `2xl`, and never inside an `auro-tail-group`.
+       * @relevantWhen size !== 'xs' && size !== 'sm'
        */
       badge: { type: String },
 
       /**
-       * Sets the href for the tail.
+       * Sets the URL the tail and its label link to, such as `https://www.alaskaair.com/` (the link's `href`). Applies only at sizes `md` through `2xl`, and never inside an `auro-tail-group`.
+       * @relevantWhen size !== 'xs' && size !== 'sm'
        */
       href: { type: String, attribute: 'href' },
 
       /**
-       * Sets the size of the tail.
+       * Sets the tail's size, from `xs` for the smallest to `2xl` for the largest. Use `md` or larger to show an `href` link or a `badge`. Inside an `auro-tail-group`, the group's `size` replaces this value.
        * @type {'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl'}
        * @default 'lg'
        */
       size: { type: String, reflect: true },
 
       /**
-       * Sets the airline tail based on the tail codes used in auro-icon (e.g., `AS`, `HA`, `PR`).
+       * Sets the airline whose tail shows, using a tail code from `auro-icon` such as `AS`, `HA`, or `PR`. Shows a default tail when the code is missing or not recognized. Codes aren't case sensitive.
        */
       tail: { type: String },
 
       /**
-       * Sets the visual variant of the tail.
+       * Sets the tail's visual style. Use `outline` to outline partner airline tails. Alaska and Hawaiian tails (`AS` and `HA`) never show an outline.
        * @type {'outline'}
        */
       variant: { type: String, reflect: true }
@@ -67,11 +88,11 @@ export class AuroTail extends LitElement {
   }
 
   /**
-   * This will register this element with the browser.
-   * @param {string} [name="auro-tail"] - The name of the element that you want to register.
+   * Registers the element with the browser under a tag name.
+   * @param {string} [name="auro-tail"] - The tag name to register the element under.
    *
    * @example
-   * AuroTail.register("custom-tail") // this will register this element to <custom-tail/>
+   * AuroTail.register("custom-tail") // Registers the element as <custom-tail>
    *
    */
   static register(name = "auro-tail") {
@@ -89,7 +110,7 @@ export class AuroTail extends LitElement {
     this.#setDefaults();
 
     /**
-     * Determines the carrier type based on tail code. Valid values: `aag`, `oa`
+     * Determines the carrier type based on tail code. Valid values: `aag`, `oa`.
      * Used internally for styling.
      * @private
      * @type {string}
@@ -116,9 +137,9 @@ export class AuroTail extends LitElement {
 
 
   /**
-   * Gets the carrier type based on the current tail code. Returns `aag` or `oa`
+   * Gets the carrier type based on the current tail code. Returns `aag` or `oa`.
    * @private
-   * @returns {string} The carrier type
+   * @returns {string} The carrier type.
    */
   get carrierType() {
     // Carrier mappings
@@ -144,7 +165,7 @@ export class AuroTail extends LitElement {
   /**
    * Finds the parent tail group element.
    * @private
-   * @returns {HTMLElement|null}
+   * @returns {HTMLElement|null} The parent tail group, or null if there isn't one.
    */
   _findParentGroup() {
     let parent = this.parentElement;
@@ -159,18 +180,18 @@ export class AuroTail extends LitElement {
   }
 
   /**
-   * Checks if this tail is inside an auro-tail-group element.
+   * Checks whether this tail is inside an `auro-tail-group` element.
    * @private
-   * @returns {boolean}
+   * @returns {boolean} True if the tail is in a group; false otherwise.
    */
   get isInGroup() {
     return !!this._findParentGroup();
   }
 
   /**
-   * Checks if this tail is in a horizontal group layout.
+   * Checks whether this tail is in a horizontal group layout.
    * @private
-   * @returns {boolean}
+   * @returns {boolean} True if the tail's group uses the `horizontal` layout; false otherwise.
    */
   get isInHorizontalGroup() {
     const group = this._findParentGroup();
@@ -178,9 +199,9 @@ export class AuroTail extends LitElement {
   }
 
   /**
-   * Checks if this tail is in a diagonal group layout.
+   * Checks whether this tail is in a diagonal group layout.
    * @private
-   * @returns {boolean}
+   * @returns {boolean} True if the tail's group uses the `diagonal` layout; false otherwise.
    */
   get isInDiagonalGroup() {
     const group = this._findParentGroup();
@@ -188,9 +209,9 @@ export class AuroTail extends LitElement {
   }
 
   /**
-   * Returns badge config when eligible.
+   * Gets the badge config when the tail can show a badge.
    * @private
-   * @returns {BadgeConfig | undefined}
+   * @returns {BadgeConfig | undefined} The badge config, or undefined if no badge applies.
    */
   get badgeConfig() {
     return this.badge && !this.isInGroup && BADGES_SIZES.includes(this.size)
@@ -199,18 +220,18 @@ export class AuroTail extends LitElement {
   }
 
   /**
-   * Checks if the tail should display as a clickable link.
+   * Checks whether the tail should display as a clickable link.
    * @private
-   * @returns {boolean}
+   * @returns {boolean} True if the tail shows as a link; false otherwise.
    */
   get shouldShowLink() {
     return !!this.href && !this.isInGroup && LINKS_SIZES.includes(this.size);
   }
 
   /**
-   * Gets the appropriate CSS type class based on tail size.
+   * Gets the CSS type class that matches the tail size.
    * @private
-   * @returns {string}
+   * @returns {string} The CSS type class name.
    */
   get labelTypeClass() {
     const sizeToTypeClassMap = {
@@ -233,7 +254,7 @@ export class AuroTail extends LitElement {
   }
 
   /**
-   * @param {Map<string, any>} changedProperties - Changed properties
+   * @param {Map<string, any>} changedProperties - The properties that changed.
    */
   updated(changedProperties) {
     // Update internal carrier type when tail changes
